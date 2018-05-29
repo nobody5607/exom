@@ -18,21 +18,54 @@ return [
            // 'class' =>  'yii\rbac\PhpManager',
             'class' =>  'yii\rbac\DbManager',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@backend/views' => '@backend/themes/admin/views',
+                    //'@frontend/views' => '@frontend/themes/standard/views',
+                    '@dektrium/user/views' => '@common/modules/user/views',
+                ],
+            ],
+        ],
         'i18n' => [
             'translations' => [
-                'backend*' => [
+                '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@backend/messages', // if advanced application, set @frontend/messages
-                    //'sourceLanguage' => 'en-US',
-//                    'fileMap' => [
-//                        'app' => 'app.php',
-//                    ],
+                    'basePath' => '@backend/messages',
+                    'fileMap' => [
+                        'chanpan' => 'chanpan.php',
+                    ],
                 ],
                 'frontend*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@frontend/messages',
                 ],
             ],
+        ],
+        'fileStorage' => [
+            'class' => '\trntv\filekit\Storage',
+            'baseUrl' => '@storageUrl/source',
+            'filesystem' => [
+                'class' => 'common\components\filesystem\LocalFlysystemBuilder',
+                'path' => '@storage/web/source'
+            ],
+            'as log' => [
+                'class' => 'backend\modules\core\behaviors\FileStorageLogBehavior',
+                'component' => 'fileStorage'
+            ]
+        ],
+        
+        'moduleFileStorage' => [
+            'class' => '\trntv\filekit\Storage',
+            'baseUrl' => '@storageUrl/module',
+            'filesystem' => [
+                'class' => 'common\components\filesystem\LocalFlysystemBuilder',
+                'path' => '@storage/web/module'
+            ],
+            'as log' => [
+                'class' => 'backend\modules\core\behaviors\FileStorageLogBehavior',
+                'component' => 'moduleFileStorage'
+            ]
         ],
     ],
 ];

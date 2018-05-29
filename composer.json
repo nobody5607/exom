@@ -20,11 +20,20 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "dektrium/yii2-user": "0.9.*@dev",
         "mdmsoft/yii2-admin": "~2.0",
+        "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-mpdf": "^1.0",
+        "kartik-v/yii2-tabs-x": "*",
         "yiisoft/yii2-authclient": "^2.1",
         "kongoon/yii2-orgchart": "^0.0.2",
         "kongoon/yii2-c3js-chart": "^0.0.4",
-        "dmstr/yii2-adminlte-asset": "2.*"
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "lajax/yii2-language-picker": "^1.2",
+        "trntv/yii2-aceeditor": "^2.0",
+        "trntv/yii2-file-kit": "^1.0.0@dev",
+        "trntv/yii2-glide": "*",
+        "bluezed/yii2-scroll-top": "*",
+        "dominus77/yii2-fontawesome-iconpicker": "*"
+        
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar" id="leftMenu">
 
     <section class="sidebar">
 

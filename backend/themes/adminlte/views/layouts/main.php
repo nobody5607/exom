@@ -36,7 +36,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-yellow sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -57,7 +57,7 @@ if (Yii::$app->controller->action->id === 'login') {
         ) ?>
 
     </div>
-
+        <?= \bluezed\scrollTop\ScrollTop::widget() ?>
     <?php $this->endBody() ?>
     </body>
     </html>

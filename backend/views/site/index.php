@@ -29,13 +29,7 @@ $this->title = 'My Yii Application';
             ]
         ]);
 ?>
-<?php 
-    echo \cpn\chanpan\widgets\CNNoty::widget([
-        'type'=>'error',
-        'title'=>'Test',
-        'message'=>'5555'
-    ])
-?>
+
 
 <?php 
     echo \cpn\chanpan\widgets\CNModal::widget([

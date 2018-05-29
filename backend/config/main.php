@@ -21,13 +21,13 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
-//        'view' => [
-//            'theme' => [
-//                'pathMap' => [
-//                    '@app/views' => '@backend/themes/adminlte/views'
-//                ]
-//            ]
-//        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@backend/themes/adminlte/views'
+                ]
+            ]
+        ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
@@ -61,10 +61,27 @@ return [
                        '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
+        
+        'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            'languages' => ['en-US', 'th-TH'], // List of available languages (icons only)
+            'cookieName' => 'language', // Name of the cookie.
+            'expireDays' => 64, // The expiration time of the cookie is 64 days.
+            'callback' => function() {
+                if (!\Yii::$app->user->isGuest) {
+                    //		    $user = \Yii::$app->user->identity;
+                    //		    $user->language = \Yii::$app->language;
+                    //		    $user->save();
+                }
+            }
+        ],
  
          
     ],
     'modules'=>[
+        'core' => [
+            'class' => 'backend\modules\core\Module',
+        ],
         'admin' => [
              'class' => 'mdm\admin\Module',
             'layout' => 'left-menu',
