@@ -22,7 +22,7 @@ if (Yii::$app->controller->action->id === 'login') {
         app\assets\AppAsset::register($this);
     }
 
-    dmstr\web\AdminLteAsset::register($this);
+    \backend\themes\adminlte\assets\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
     ?>
@@ -36,7 +36,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -50,7 +50,9 @@ if (Yii::$app->controller->action->id === 'login') {
             ['directoryAsset' => $directoryAsset]
         )
         ?>
-
+         
+       
+         
         <?= $this->render(
             'content.php',
             ['content' => $content, 'directoryAsset' => $directoryAsset]

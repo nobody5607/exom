@@ -21,16 +21,13 @@ use dmstr\widgets\Alert;
             </h1>
         <?php } ?>
 
-        <?=
-        Breadcrumbs::widget(
-            [
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]
-        ) ?>
     </section>
 
     <section class="content">
         <?= Alert::widget() ?>
+         <?= yii\widgets\Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
         <?= $content ?>
     </section>
 </div>

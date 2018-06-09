@@ -81,6 +81,7 @@ return[
     'Location'=>'ที่ตั้ง',
     'Timezone'=>'เขตเวลา',
     'Birth date'=>'วันเกิด',
-    'My Picture'=>'รูปของฉัน'
+    'My Picture'=>'รูปของฉัน',
+    'Last login'=>'ล๊อกอินล่าสุด'
     ]
 ?>

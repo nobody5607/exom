@@ -32,7 +32,8 @@
         "trntv/yii2-file-kit": "^1.0.0@dev",
         "trntv/yii2-glide": "*",
         "bluezed/yii2-scroll-top": "*",
-        "dominus77/yii2-fontawesome-iconpicker": "*"
+        "dominus77/yii2-fontawesome-iconpicker": "*",
+        "kartik-v/yii2-grid": "@dev"
         
     },
     "require-dev": {

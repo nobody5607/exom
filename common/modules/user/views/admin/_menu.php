@@ -1,66 +1,35 @@
 <?php
+    
+    $moduleID = '';
+    $controllerID = '';
+    $actionID = '';
 
-/*
- * This file is part of the Dektrium project
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
-
-use yii\bootstrap\Nav;
-
-?>
-
-<?= Nav::widget([
-    'options' => [
-        'class' => 'nav-tabs',
-        'style' => 'margin-bottom: 15px',
-    ],
-    'items' => [
-        [
-            'label' => Yii::t('user', 'Users'),
-            'url' => ['/user/admin/index'],
-        ],
-        [
-            'label' => Yii::t('user', 'Roles'),
-            'url' => ['/rbac/role/index'],
-            'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-        ],
-        [
-            'label' => Yii::t('user', 'Permissions'),
-            'url' => ['/rbac/permission/index'],
-            'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-        ],
-        [
-            'label' => \Yii::t('user', 'Rules'),
-            'url'   => ['/rbac/rule/index'],
-            'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-        ],
-        [
-            'label' => Yii::t('user', 'Create'),
-            'items' => [
-                [
-                    'label' => Yii::t('user', 'New user'),
-                    'url' => ['/user/admin/create'],
-                ],
-                [
-                    'label' => Yii::t('user', 'New role'),
-                    'url' => ['/rbac/role/create'],
-                    'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-                ],
-                [
-                    'label' => Yii::t('user', 'New permission'),
-                    'url' => ['/rbac/permission/create'],
-                    'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-                ],
-                [
-                    'label' => \Yii::t('user', 'New rule'),
-                    'url'   => ['/rbac/rule/create'],
-                    'visible' => isset(Yii::$app->extensions['dektrium/yii2-rbac']),
-                ]
+    if (isset(Yii::$app->controller->module->id)) {
+        $moduleID = Yii::$app->controller->module->id;
+    }
+    if (isset(Yii::$app->controller->id)) {
+        $controllerID = Yii::$app->controller->id;
+    }
+    if (isset(Yii::$app->controller->action->id)) {
+        $actionID = Yii::$app->controller->action->id;
+    }
+    
+    echo yii\bootstrap\Nav::widget([ 
+        'items' => [
+            
+            [
+                'label' => Yii::t('chanpan', 'Members'),
+                'url' => ['/user/admin/index'],
+                'active'=>($moduleID=='user' && $controllerID=='admin' && $actionID=='index') ? TRUE : FALSE
+            ],            
+            [
+                'label' => Yii::t('chanpan', 'Recover password template'),
+                'url' => ['/manage_user/setting/recover-password'], 
+                'active'=>($moduleID=='manage_user' && $controllerID=='setting' && $actionID=='recover-password') ? TRUE : FALSE
             ],
+
         ],
-    ],
-]) ?>
+        'options' => ['class' =>'nav nav-tabs'], // set this to nav-tab to get tab-styled navigation
+    ]);
+   echo'<br>';
+?>

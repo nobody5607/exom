@@ -79,6 +79,9 @@ return [
          
     ],
     'modules'=>[
+         'gridview' =>  [
+                'class' => '\kartik\grid\Module'
+        ],
         'core' => [
             'class' => 'backend\modules\core\Module',
         ],
@@ -102,6 +105,7 @@ return [
                 'User' => 'common\modules\user\models\User',
                 'Profile' => 'common\modules\user\models\Profile',
                 'RegistrationForm' => 'common\modules\user\models\RegistrationForm',
+                'UserSearch'=>'common\modules\user\models\UserSearch'
             ],
             'controllerMap' => [
                 'admin' => 'common\modules\user\controllers\AdminController',
