@@ -18,7 +18,7 @@ use kartik\widgets\ActiveForm;
         <div class="input-group">
           <?= Html::activeTextInput($model, 'q',['class'=>'form-control','placeholder'=> Yii::t('chanpan','Username, Name and Sitecode')]) ?>
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> ค้นหา</button>
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> <?= Yii::t('chanpan','Search')?></button>
             <?php //Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-default']) ?>
           </span>
         </div>

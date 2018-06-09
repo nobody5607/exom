@@ -14,10 +14,25 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'urlManager' => [
+	    'class' => 'yii\web\UrlManager',
+	    'showScriptName' => false, // Disable index.php
+	    'enablePrettyUrl' => true, // Disable r= routes
+	    'rules' => [
+                ''=>'site/index',
+                'access-denied'=>'access-module/access-denied',
+                //'site/config'=>'site/index',
+		'<controller:\w+>/<id:\d+>' => '<controller>',
+		'<controller:\w+>/<action:\w+>/<*:*>' => '<controller>/<action>/<*>',
+		'<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>',
+		'<module:\w+>/<controller:\w+>/<action:\w+>/<*:*>' => '<module>/<controller>/<action>/<*>',
+	    ],
+	],
         'authManager' => [
-           // 'class' =>  'yii\rbac\PhpManager',
-            'class' =>  'yii\rbac\DbManager',
-        ],
+	    'class' => 'yii\rbac\DbManager',
+	    'defaultRoles' => ['guest', 'user'],
+	    'cache' => 'yii\caching\FileCache'
+	],
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -26,7 +41,7 @@ return [
                     '@dektrium/user/views' => '@common/modules/user/views',
                 ],
             ],
-        ],
+        ],        
         'i18n' => [
             'translations' => [
                 '*' => [

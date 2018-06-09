@@ -11,12 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log',
-            [
+        [
             'class' => 'common\components\LanguageSelector',
             'supportedLanguages' => ['en-US', 'th-TH'], //กำหนดรายการภาษาที่ support หรือใช้ได้
-            ]
+        ]
     ],
-     
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -33,8 +32,7 @@ return [
             'enableAutoLogin' => true,
             
         ],
-        'session' => [
-            // this is the name of the session cookie used for login on the backend
+        'session' => [ 
             'name' => 'advanced-backend',
         ],
         'log' => [
@@ -48,19 +46,7 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-         
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                       '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                       '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                       '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                       ['class' => 'yii\rest\UrlRule', 'controller' => 'location', 'except' => ['delete','GET', 'HEAD','POST','OPTIONS'], 'pluralize'=>false],
-                       '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-            ],
-        ],
+        ], 
         
         'languagepicker' => [
             'class' => 'lajax\languagepicker\Component',
@@ -86,12 +72,13 @@ return [
             'class' => 'backend\modules\core\Module',
         ],
         'admin' => [
-             'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu',
+            'class' => 'mdm\admin\Module',
+            'layout' => '@app/views/layouts/main.php',
+//            'layout' => 'left-menu',
             'controllerMap' => [
                  'assignment' => [
-                    'class' => 'cpn\admin\controllers\AssignmentController',
-                    'userClassName' => 'dektrium\user\models\User', 
+                    'class' => 'mdm\admin\controllers\AssignmentController',
+                    //'userClassName' => 'dektrium\user\models\User', 
                 ]
             ],
         ],
@@ -105,13 +92,14 @@ return [
                 'User' => 'common\modules\user\models\User',
                 'Profile' => 'common\modules\user\models\Profile',
                 'RegistrationForm' => 'common\modules\user\models\RegistrationForm',
-                'UserSearch'=>'common\modules\user\models\UserSearch'
+                'RecoveryForm' =>'common\modules\user\models\RecoveryForm'
             ],
             'controllerMap' => [
                 'admin' => 'common\modules\user\controllers\AdminController',
                 'settings' => 'common\modules\user\controllers\SettingsController',
                 'registration' => 'common\modules\user\controllers\RegistrationController',
                 'security'=>'common\modules\user\controllers\SecurityController',
+                'recovery'=>'common\modules\user\controllers\RecoveryController'
             ],
         ],
         
@@ -121,6 +109,7 @@ return [
         'allowActions' => [
             //module, controller, action ที่อนุญาตให้ทำงานโดยไม่ต้องผ่านการตรวจสอบสิทธิ์
             'site/*',
+            'user/*'
             //'admin/*',
         ]
     ],

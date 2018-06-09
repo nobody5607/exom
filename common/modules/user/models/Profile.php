@@ -33,8 +33,9 @@ class Profile extends BaseProfile{
             
         ];
         $addon = [
-            [['firstname'],'required','message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
-            [['lastname'],'required','message'=> \Yii::t('chanpan','Lastname cannot be blank.')],
+            //[['firstname'],'required','message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
+            ['firstname','required', 'on' => ['register', 'create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
+            [['lastname'],'required','on' => ['register', 'create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Lastname cannot be blank.')],
             [['avatar_path', 'avatar_base_url'], 'string'],
             [['image','tel'], 'safe']
         ];

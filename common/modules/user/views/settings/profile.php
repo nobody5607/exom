@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo $form->field($model, 'image')->widget(\trntv\filekit\widget\Upload::classname(), [
                         'url' => ['/core/file-storage/avatar-upload']
                     ])
-                    ?>
+                ?>
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

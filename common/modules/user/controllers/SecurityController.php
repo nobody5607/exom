@@ -7,6 +7,7 @@ class SecurityController extends BaseSecurityController{
     public function actionLogin()
     {
        
+       // $this->layout='@backend/themes/adminlte/views/layouts/main';
         if (!\Yii::$app->user->isGuest) {
             $this->goHome();
         }

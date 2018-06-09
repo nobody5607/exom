@@ -5,8 +5,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Pjax;
+use richardfan\widget\JSRegister;
 
-$this->title = Yii::t('user', 'Member Management System');
+$this->title = Yii::t('chanpan', 'Member Management System');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
  
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'yii\grid\SerialColumn',
                 ],
+                'email',
                 'username',
                 [
                     'attribute' => 'firstname',
@@ -161,3 +163,28 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php Pjax::end() ?>
     </div>
 </div>
+<?php 
+    echo yii\bootstrap\Modal::widget([
+        'id'=>'modal-user',
+        'size'=>'modal-lg',
+        'options'=>['tabindex' => false]
+    ]);
+?>
+<?php JSRegister::begin(); ?>
+<script>
+    $('.btn').on('click', function(){
+       let action = $(this).attr('data-action');
+       let url = $(this).attr('href');
+       if(action === 'update'){
+           modalUser(url);
+       }
+       return false;
+    });
+    function modalUser(url) {
+        $('#modal-user .modal-content').html("<div class='text-center'><i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i></div>");
+        $('#modal-user').modal('show')
+        .find('.modal-content')
+        .load(url);
+    }
+</script>
+<?php JSRegister::end();?>

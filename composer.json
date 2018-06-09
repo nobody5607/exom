@@ -33,7 +33,9 @@
         "trntv/yii2-glide": "*",
         "bluezed/yii2-scroll-top": "*",
         "dominus77/yii2-fontawesome-iconpicker": "*",
-        "kartik-v/yii2-grid": "@dev"
+        "kartik-v/yii2-grid": "@dev",
+        "richardfan1126/yii2-js-register": "*",
+        "himiklab/yii2-recaptcha-widget": "*"
         
     },
     "require-dev": {

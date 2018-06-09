@@ -33,8 +33,8 @@ class AppComponent {
                      ['label' => '<i class="fa fa-sign-out"></i> '.Yii::t('chanpan','Logout'), 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ],
             ],
-            ['label' => "<i class='fa fa-sign-in'></i> ".Yii::t('backend','Sign up'), 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-            ['label' => "<i class='fa fa-sign-in'></i> ".Yii::t('backend','Login'), 'url' => ['user/login'], 'visible' => Yii::$app->user->isGuest],
+            ['label' => "<i class='fa fa-sign-in'></i> ".Yii::t('backend','Sign up'), 'url' => ['/user/register'], 'visible' => Yii::$app->user->isGuest],
+            ['label' => "<i class='fa fa-sign-in'></i> ".Yii::t('backend','Login'), 'url' => ['/user/login'], 'visible' => Yii::$app->user->isGuest],
         ];
         return $items;
     }

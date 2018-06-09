@@ -22,7 +22,7 @@ $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
@@ -40,7 +40,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php if ($module->enableGeneratingPassword == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
+                    <?= $form->field($model, 'confirm_password')->passwordInput() ?>
                 <?php endif ?>
+                <div class="col-md-6" style="padding-left:0;">
+                    <?= $form->field($model, 'firstname') ?>
+                </div>
+                <div class="col-md-6" style="padding-right:0;">
+                    <?= $form->field($model, 'lastname') ?>
+                </div>
+		 
+                <?= $form->field($model, 'telephone')->widget(\yii\widgets\MaskedInput::className(), [
+                    'mask' => '9999999999',
+                ]) ?>
+                <?= $form->field($model, 'captcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())->label(FALSE) ?>
 
                 <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
 
