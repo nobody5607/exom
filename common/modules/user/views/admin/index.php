@@ -1,190 +1,208 @@
-<?php
+ <?php
 
-use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\web\View;
 use yii\widgets\Pjax;
-use richardfan\widget\JSRegister;
+use yii\helpers\Url;
+use appxq\sdii\widgets\GridView;
+use appxq\sdii\widgets\ModalForm;
+use appxq\sdii\helpers\SDNoty;
+use appxq\sdii\helpers\SDHtml;
+use Yii;
 
+ 
 $this->title = Yii::t('chanpan', 'Member Management System');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
- 
 <div class="panel panel-default">
     <div class="panel-body">
-        <h3><i class="fa fa-users"></i> <?= Html::encode($this->title) ?></h3><hr>
-        <?php Pjax::begin(['id' => 'grid-user-pjax', 'timeout' => 5000]) ?> 
-        
-        
-        <!-- เรียก view _search.php -->
-        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-        <br>
-        
-        <?=
-        GridView::widget([
-            'dataProvider' => $dataProvider,
-            //'filterModel' => $searchModel,
-            'hover' => true,
-            'resizableColumns' => true,
-            //'layout' => "{items}\n{pager}",
-            'columns' => [
-                [
-                    'class' => 'yii\grid\SerialColumn',
-                ],
-                'email',
-                'username',
-                [
-                    'attribute' => 'firstname',
-                    'label' => Yii::t('chanpan', 'First name'),
-                    'value' => 'profile.firstname'
-                ],
-                [
-                    'attribute' => 'lastname',
-                    'label' => Yii::t('chanpan', 'Last name'),
-                    'value' => 'profile.lastname'
-                ],
-                [
-                    'headerOptions' => ['style' => 'width:150px;'],
-                    'label' => Yii::t('chanpan', 'Sitecode'),
-                    'value' => function($model) {
-                        return $model->profile->sitecode;
-                    }
-                ],
-                [
-                    'attribute' => 'created_at',
-                    'value' => function ($model) {
-                        if (extension_loaded('intl')) {
-                            return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
-                        } else {
-                            return date('Y-m-d G:i:s', $model->created_at);
-                        }
-                    },
-                ],
-                [
-                    'attribute' => 'last_login_at',
-                    'label' => Yii::t('chanpan', 'Last login'),
-                    'value' => function ($model) {
-                        if (!$model->last_login_at || $model->last_login_at == 0) {
-                            return Yii::t('user', 'Never');
-                        } else if (extension_loaded('intl')) {
-                            return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->last_login_at]);
-                        } else {
-                            return date('Y-m-d G:i:s', $model->last_login_at);
-                        }
-                    },
-                ],
-                [
-                    'headerOptions' => ['style' => 'width:150px;'],
-                    'header' => Yii::t('user', 'Confirmation'),
-                    'value' => function ($model) {
-                        if ($model->isConfirmed) {
-                            return '<div class="text-center">
-                                <span class="text-success">' . Yii::t('user', 'Confirmed') . '</span>
-                            </div>';
-                        } else {
-                            return Html::a(Yii::t('user', 'Confirm'), ['confirm', 'id' => $model->id], [
-                                        'class' => 'btn btn-xs btn-success btn-block',
-                                        'data-method' => 'post',
-                                        'data-confirm' => Yii::t('user', 'Are you sure you want to confirm this user?'),
-                            ]);
-                        }
-                    },
-                    'format' => 'raw',
-                    'visible' => Yii::$app->getModule('user')->enableConfirmation,
-                ],
-                [
-                    'headerOptions' => ['style' => 'width:150px;'],
-                    'header' => Yii::t('user', 'Block status'),
-                    'value' => function ($model) {
-                        if ($model->isBlocked) {
-                            return Html::a(Yii::t('user', 'Unblock'), ['block', 'id' => $model->id], [
-                                        'class' => 'btn btn-xs btn-success btn-block',
-                                        'data-method' => 'post',
-                                        'data-confirm' => Yii::t('user', 'Are you sure you want to unblock this user?'),
-                            ]);
-                        } else {
-                            return Html::a(Yii::t('user', 'Block'), ['block', 'id' => $model->id], [
-                                        'class' => 'btn btn-xs btn-danger btn-block',
-                                        'data-method' => 'post',
-                                        'data-confirm' => Yii::t('user', 'Are you sure you want to block this user?'),
-                            ]);
-                        }
-                    },
-                    'format' => 'raw',
-                ],
-                [
-                    'header' => Yii::t('chanpan', 'Admin'),
-                    'value' => function ($model) {
-                        $data = \common\modules\user\classes\CNAuth::canAdmin($model->id);
+        <div class="sdbox-header">
+            <h3><i class="fa fa-users"></i> <?=  Html::encode($this->title) ?></h3><hr />
+    </div>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                        //$sitecode = isset($model->profile->sitecode) ? $model->profile->sitecode : '';
+    <?php  Pjax::begin(['id'=>'user-grid-pjax']);?>
+    <?= GridView::widget([
+	'id' => 'user-grid',
+	//'panelBtn' => Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['/user/admin/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-user', 'disabled'=>true]),
+	'dataProvider' => $dataProvider,
+	'filterModel' => $searchModel,
+        'columns' => [
+	   
+	    [
+		'class' => 'yii\grid\SerialColumn',
+		'headerOptions' => ['style'=>'text-align: center;'],
+		'contentOptions' => ['style'=>'width:60px;text-align: center;'],
+	    ],
+            [
+                'format'=>'email',
+                'attribute' => 'email',
+                'label' => Yii::t('chanpan', 'Email'),
+                'value' => 'email',
 
-                        if (!empty($data)) {
-                            return '<i style="color:green;" class="glyphicon glyphicon-ok"></i>';
-                        }
-                        return '<i style="color:red;" class="glyphicon glyphicon-remove-sign"></i>';
-                    },
-                    'format' => 'raw',
-                    'headerOptions' => ['style' => 'text-align: center;'],
-                    'contentOptions' => ['style' => 'width:90px;text-align: center;'],
-                ],
-                ['class' => 'yii\grid\ActionColumn',
-                    'header' => Yii::t('user', ''),
-                    'template' => '{update} {delete}',
-                    'buttons' => [
-                        'update' => function ($url, $model) {
-
-                            return Html::a('<span class="fa fa-edit"></span> ' . Yii::t('chanpan', 'Edit'), yii\helpers\Url::to(['/user/admin/update-profile', 'id' => $model->id]), [
-                                        'title' => Yii::t('chanpan', 'Edit'),
-                                        'class' => 'btn btn-warning btn-xs',
-                                        'data-action' => 'update'
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-
-                            if ($model->id != Yii::$app->user->getId()) {
-                                return Html::a('<span class="fa fa-trash"></span> ' . Yii::t('chanpan', 'Delete'), $url, [
-                                            'title' => Yii::t('chanpan', 'Delete'),
-                                            'class' => 'btn btn-danger btn-xs',
-                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                            'data-method' => 'post',
-                                            'data-action' => 'delete'
-                                ]);
-                            }
-                        },
-                    ],
-                    'contentOptions' => ['style' => 'width:160px;text-align:left;']
-                ],
             ],
-        ]);
-        ?>
+            [
+                'attribute' => 'username',
+                'value' => 'username',
+                'headerOptions'=>['style'=>'width:10px']
+            ],
+            [
+                'attribute' => 'firstname',
+                'label' => Yii::t('chanpan', 'First name'),
+                'value' => 'profile.firstname',
 
-        <?php Pjax::end() ?>
+            ],
+            [
+                'attribute' => 'lastname',
+                'label' => Yii::t('chanpan', 'Last name'),
+                'value' => 'profile.lastname',
+
+            ], 
+            [
+                'attribute' => 'created_at',
+                'value' => function ($model) {
+                    if (extension_loaded('intl')) {
+                        return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
+                    } else {
+                        return date('Y-m-d G:i:s', $model->created_at);
+                    }
+                },
+
+            ],
+
+	    [
+		'class' => 'appxq\sdii\widgets\ActionColumn',
+		'contentOptions' => ['style'=>'width:80px;text-align: center;'],
+		'template' => '{update} {delete}',
+                'buttons'=>[
+                    'update'=>function($url, $model){
+                        return Html::a('<span class="fa fa-edit"></span> '.Yii::t('chanpan', 'Edit'), 
+                                    yii\helpers\Url::to(['/user/admin/update-profile/', 'id'=>$model->id]), [
+                                    'title' => Yii::t('chanpan', 'Edit'),
+                                    'class' => 'btn btn-warning btn-xs',
+                                    'data-action'=>'update',
+                                    'data-pjax'=>0
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        if($model->id != \Yii::$app->user->getId()){
+                            return Html::a('<span class="fa fa-trash"></span> '.Yii::t('chanpan', 'Delete'), 
+                                    yii\helpers\Url::to(['/user/admin/delete/','id'=>$model->id]), [
+                                    'title' => Yii::t('chanpan', 'Delete'),
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'data-confirm' => Yii::t('chanpan', 'Are you sure you want to delete this item?'),
+                                    'data-method' => 'post',
+                                    'data-action' => 'delete',
+                                    'data-pjax'=>0
+                            ]);
+                        }
+                        
+                            
+                        
+                    },
+                ]
+	    ],
+        ],
+    ]); ?>
+    <?php  Pjax::end();?>
     </div>
 </div>
-<?php 
-    echo yii\bootstrap\Modal::widget([
-        'id'=>'modal-user',
-        'size'=>'modal-lg',
-        'options'=>['tabindex' => false]
-    ]);
+
+<?=  ModalForm::widget([
+    'id' => 'modal-user',
+    'size'=>'modal-lg',
+]);
 ?>
-<?php JSRegister::begin(); ?>
+
+<?php  \richardfan\widget\JSRegister::begin([
+    //'key' => 'bootstrap-modal',
+    'position' => \yii\web\View::POS_READY
+]); ?>
 <script>
-    $('.btn').on('click', function(){
-       let action = $(this).attr('data-action');
-       let url = $(this).attr('href');
-       if(action === 'update'){
-           modalUser(url);
-       }
-       return false;
-    });
-    function modalUser(url) {
-        $('#modal-user .modal-content').html("<div class='text-center'><i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i></div>");
-        $('#modal-user').modal('show')
-        .find('.modal-content')
-        .load(url);
+// JS script
+$('#user-grid-pjax').on('click', '#modal-addbtn-user', function() {
+    modalUser($(this).attr('data-url'));
+});
+
+$('#user-grid-pjax').on('click', '#modal-delbtn-user', function() {
+    selectionUserGrid($(this).attr('data-url'));
+});
+
+$('#user-grid-pjax').on('click', '.select-on-check-all', function() {
+    window.setTimeout(function() {
+	var key = $('#user-grid').yiiGridView('getSelectedRows');
+	disabledUserBtn(key.length);
+    },100);
+});
+
+$('#user-grid-pjax').on('click', '.selectionUserIds', function() {
+    var key = $('input:checked[class=\"'+$(this).attr('class')+'\"]');
+    disabledUserBtn(key.length);
+});
+
+$('#user-grid-pjax').on('dblclick', 'tbody tr', function() {
+    var id = $(this).attr('data-key');
+    modalUser('<?= Url::to(['/user/admin/update-profile/', 'id'=>''])?>'+id);
+});	
+
+$('#user-grid-pjax').on('click', 'tbody tr td a', function() {
+    var url = $(this).attr('href');
+    var action = $(this).attr('data-action');
+
+    if(action === 'update' || action === 'view') {
+	modalUser(url);
+    } else if(action === 'delete') {
+	yii.confirm('<?= Yii::t('chanpan', 'Are you sure you want to delete this item?')?>', function() {
+	    $.post(
+		url
+	    ).done(function(result) {
+		if(result.status == 'success') {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		    $.pjax.reload({container:'#user-grid-pjax'});
+		} else {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		}
+	    }).fail(function() {
+		<?= SDNoty::show("'" . SDHtml::getMsgError() . "Server Error'", '"error"')?>
+		console.log('server error');
+	    });
+	});
     }
+    return false;
+});
+
+function disabledUserBtn(num) {
+    if(num>0) {
+	$('#modal-delbtn-user').attr('disabled', false);
+    } else {
+	$('#modal-delbtn-user').attr('disabled', true);
+    }
+}
+
+function selectionUserGrid(url) {
+    yii.confirm('<?= Yii::t('app', 'Are you sure you want to delete these items?')?>', function() {
+	$.ajax({
+	    method: 'POST',
+	    url: url,
+	    data: $('.selectionUserIds:checked[name=\"selection[]\"]').serialize(),
+	    dataType: 'JSON',
+	    success: function(result, textStatus) {
+		if(result.status == 'success') {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		    $.pjax.reload({container:'#user-grid-pjax'});
+		} else {
+		    <?= SDNoty::show('result.message', 'result.status')?>
+		}
+	    }
+	});
+    });
+}
+
+function modalUser(url) {
+    $('#modal-user .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
+    $('#modal-user').modal('show')
+    .find('.modal-content')
+    .load(url);
+}
 </script>
-<?php JSRegister::end();?>
+<?php  \richardfan\widget\JSRegister::end(); ?>

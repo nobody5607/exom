@@ -76,14 +76,15 @@ return [
             'layout' => '@app/views/layouts/main.php',
 //            'layout' => 'left-menu',
             'controllerMap' => [
-                 'assignment' => [
-                    'class' => 'mdm\admin\controllers\AssignmentController',
+                'assignment' => [
+                    'class' => 'common\modules\admin\controllers\AssignmentController',
                     //'userClassName' => 'dektrium\user\models\User', 
                 ]
             ],
         ],
         'user' => [
             'class' => 'dektrium\user\Module',
+            'enableConfirmation' => FALSE,
             'enableUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,

@@ -9,7 +9,7 @@ dmstr\web\AdminLteAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>" style="overflow: hidden;">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,13 +17,13 @@ dmstr\web\AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="login-page">
+<body class="login-page" style="background: url('<?= \yii\helpers\Url::to('@web/img/bg3.jpg')?>'); background-attachment: fixed;background-position: bottom">
 
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
-    <?= $content ?>
+        <?= $content ?>
 
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

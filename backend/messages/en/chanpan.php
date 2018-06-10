@@ -64,5 +64,15 @@ return[
     'Member Management System'=>'Member Management System',
     'Public Email'=>'Public Email',
     
+    'Update successfully'=>'Update successfully',
+    'Create successfully'=>'Create successfully',
+    'Delete successfully'=>'Delete successfully',
+    'You can not remove your own account'=>'You can not remove your own account',
+    'Are you sure you want to delete this item?'=>'Are you sure you want to delete this item?',
+    'Can not create the data.'=>'Can not create the data.',
+    'Can not update the data.'=>'Can not update the data.',
+    'Can not delete the data.'=>'Can not delete the data.',
+    'Are you sure you want to delete these items?'=>'Are you sure you want to delete these items?',
+    
 ]
 ?>

@@ -64,5 +64,15 @@ return[
     'Last login'=>'ล๊อกอินล่าสุด',
     'Member Management System'=>'ระบบการจัดการสมาชิก',
     'Public Email'=>'อีเมลสาธารณะ',
+    
+    'Update successfully'=>'แก้ไขสำเร็จ',
+    'Create successfully'=>'เพิ่มสำเร็จ',
+    'Delete successfully'=>'ลบสำเร็จ',
+    'You can not remove your own account'=>'คุณไม่สามารถนำบัญชีของคุณออกได้',
+    'Are you sure you want to delete this item?'=>'คุณแน่ใจหรือว่าต้องการลบรายการนี้หรือไม่?',
+    'Can not create the data.'=>'ไม่สามารถสร้างข้อมูล',
+    'Can not update the data.'=>'ไม่สามารถแก้ไขข้อมูล',
+    'Can not delete the data.'=>'ไม่สามารถลบข้อมูล',
+    'Are you sure you want to delete these items?'=>'คุณแน่ใจหรือไม่ว่าต้องการลบรายการเหล่านี้',
     ]
 ?>

@@ -34,10 +34,10 @@ class Profile extends BaseProfile{
         ];
         $addon = [
             //[['firstname'],'required','message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
-            ['firstname','required', 'on' => ['register', 'create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
-            [['lastname'],'required','on' => ['register', 'create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Lastname cannot be blank.')],
+            ['firstname','required', 'on' => ['create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Firstname cannot be blank.')],
+            [['lastname'],'required','on' => ['create', 'connect', 'update','update-profile'],'message'=> \Yii::t('chanpan','Lastname cannot be blank.')],
             [['avatar_path', 'avatar_base_url'], 'string'],
-            [['image','tel'], 'safe']
+            [['image','tel','firstname','lastname'], 'safe']
         ];
         
         return \yii\helpers\ArrayHelper::merge($rules, $addon);
@@ -46,7 +46,7 @@ class Profile extends BaseProfile{
     {
 	$labels = [             
             'tel'            => Yii::t('chanpan', 'Telephone number'),
-            //'sitecode'       => Yii::t('chanpan','Sitecode'),
+            'sitecode'       => Yii::t('chanpan','Sitecode'),
             'name'           => Yii::t('chanpan', 'Nickname'),
             'firstname'      => Yii::t('chanpan', 'First name'),
             'lastname'       => Yii::t('chanpan', 'Last name'),

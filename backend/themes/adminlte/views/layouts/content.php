@@ -24,7 +24,7 @@ use dmstr\widgets\Alert;
     </section>
 
     <section class="content">
-        <?= Alert::widget() ?>
+        <?php //Alert::widget() ?>
          <?= yii\widgets\Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

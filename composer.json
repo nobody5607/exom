@@ -35,7 +35,8 @@
         "dominus77/yii2-fontawesome-iconpicker": "*",
         "kartik-v/yii2-grid": "@dev",
         "richardfan1126/yii2-js-register": "*",
-        "himiklab/yii2-recaptcha-widget": "*"
+        "himiklab/yii2-recaptcha-widget": "*",
+        "johnitvn/yii2-ajaxcrud": "*"
         
     },
     "require-dev": {

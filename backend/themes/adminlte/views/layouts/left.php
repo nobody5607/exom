@@ -65,23 +65,27 @@
                         'icon' => 'cog',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Authentication', 'icon' => 'cogs', 'url' => ['/admin/role/view?id=admin'],],
+                            //['label' => 'Authentication', 'icon' => 'cogs', 'url' => ['/admin/role/view?id=admin'],],
                             ['label' => 'User Management', 'icon' => 'users', 'url' => ['/user/admin/index'],],
                             [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
+                                'label' => 'Authentication',
+                                'icon' => 'cogs',
                                 'url' => '#',
                                 'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
+                                    //Assignments
+                                    ['label' => 'Assignments', 'icon' => 'circle-o', 'url' => ['/admin'],],
+                                    ['label' => 'Role', 'icon' => 'circle-o', 'url' => ['/admin/role'],],
+                                    ['label' => 'Route', 'icon' => 'circle-o', 'url' => ['/admin/route'],],
+                                    ['label' => 'Permission', 'icon' => 'circle-o', 'url' => ['/admin/permission'],],
+//                                    [
+//                                        'label' => 'Level Two',
+//                                        'icon' => 'circle-o',
+//                                        'url' => '#',
+//                                        'items' => [
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                        ],
+//                                    ],
                                 ],
                             ],
                         ],

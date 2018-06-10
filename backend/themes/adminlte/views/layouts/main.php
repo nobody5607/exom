@@ -6,13 +6,13 @@ use yii\helpers\Html;
 
 \cpn\chanpan\assets\bootbox\BootBoxAsset::register($this);
 \cpn\chanpan\assets\notify\NotifyAsset::register($this);
-//if (Yii::$app->controller->action->id === 'login') { 
-// 
-//    echo $this->render(
-//        'main-login',
-//        ['content' => $content]
-//    );
-//} else {
+if (Yii::$app->controller->action->id === 'login') { 
+ 
+    echo $this->render(
+        'main-login',
+        ['content' => $content]
+    );
+} else {
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -37,7 +37,7 @@ use yii\helpers\Html;
     <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
     <?php $this->beginBody() ?>
     <div class="wrapper">
-
+        
         <?= $this->render(
             'header.php',
             ['directoryAsset' => $directoryAsset]
@@ -62,4 +62,4 @@ use yii\helpers\Html;
     </body>
     </html>
     <?php $this->endPage() ?>
-<?php //} ?>
+<?php  } ?>

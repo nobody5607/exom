@@ -15,6 +15,7 @@ class CNMessage {
 
     public static function getSuccess($message) {
         self::JsonResponses();
+         
         $result = [
             'status' => 'success',
             'action' => 'create',
@@ -23,7 +24,7 @@ class CNMessage {
         return $result;
     }
     public static function getError($message) {
-        self::JsonResponses();
+        self::JsonResponses(); 
         $result = [
             'status' => 'error',
             'action' => 'create',

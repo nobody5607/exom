@@ -38,6 +38,7 @@ class RegistrationController extends BaseRegistrationController
             ],
         ];
     }
+   
     public function actionRegister()
     {
         if (!$this->module->enableRegistration) {
@@ -45,26 +46,24 @@ class RegistrationController extends BaseRegistrationController
         }
 
         $model = \Yii::createObject(RegistrationForm::className());
-        $this->performAjaxValidation($model);
+        //$this->performAjaxValidation($model);
 
-        if ($model->load(\Yii::$app->request->post())) {
-//            $username = isset($_POST['register-form']['username']) ? $_POST['register-form']['username'] : '';
-//            $email = isset($_POST['register-form']['email']) ? $_POST['register-form']['email'] : '';
-//            
-//            if(\common\modules\user\classes\CNUserFunc::checkUser('username', $username)){                
-//                \Yii::$app->session->setFlash('error', Yii::t('user', 'This username has already been taken'));
-//            }            
-//            if(\common\modules\user\classes\CNUserFunc::checkUser('email', $email)){
-//                \Yii::$app->session->setFlash('error', Yii::t('user', 'This email address has already been taken'));
-//            }
+        if ($model->load(\Yii::$app->request->post())) { 
+            $username = isset($_POST['register-form']['username']) ? $_POST['register-form']['username'] : '';
+            $email = isset($_POST['register-form']['email']) ? $_POST['register-form']['email'] : '';
             
+            if(\common\modules\user\classes\CNUserFunc::checkUser('username', $username)){                
+               \Yii::$app->session->setFlash('error', Yii::t('user', 'This username has already been taken'));
+            }            
+            if(\common\modules\user\classes\CNUserFunc::checkUser('email', $email)){
+                \Yii::$app->session->setFlash('error', Yii::t('user', 'This email address has already been taken'));
+            }            
             if($model->register()){
-                 
-                return $this->render('messages', [
+                return $this->render('message', [
                     'title'  => \Yii::t('chanpan', 'A message has been sent to your email address. It contains a confirmation link that you must click to complete registration.'),
                     'module' => $this->module,
                     'email'=>$model->email
-                ]);
+                ]);   
             } 
         }
 

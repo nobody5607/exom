@@ -5,7 +5,8 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@cpn/chanpan' => '@common/lib/yii2-chanpan',
-        '@cpn/admin' => '@common/lib/yii2-admin'
+        '@cpn/admin' => '@common/lib/yii2-admin',
+        '@appxq/sdii' => '@common/lib/yii2-sdii',
          
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
@@ -37,7 +38,7 @@ return [
             'theme' => [
                 'pathMap' => [
                     '@backend/views' => '@backend/themes/admin/views',
-                    //'@frontend/views' => '@frontend/themes/standard/views',
+                    '@mdm/admin/views' => '@common/modules/admin/views',
                     '@dektrium/user/views' => '@common/modules/user/views',
                 ],
             ],

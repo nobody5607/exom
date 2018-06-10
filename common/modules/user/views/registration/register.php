@@ -11,15 +11,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/**
- * @var yii\web\View $this
- * @var dektrium\user\models\User $model
- * @var dektrium\user\Module $module
- */
+ 
 
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
+
+?>
+<?php
+$form = ActiveForm::begin([
+            'id' => $model->formName(),
+                //'enableAjaxValidation' => true,
+                //'validationUrl'=> yii\helpers\Url::to(['/user/registration/validate-url'])
+                //'enableClientValidation' => false,
+        ]);
 ?>
 <div class="row">
     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -28,12 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
             </div>
             <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'registration-form',
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                ]); ?>
-
+                <?php if (Yii::$app->session->hasFlash('error')): ?>
+                    <div class="alert alert-danger alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?= Yii::$app->session->getFlash('error') ?>
+                    </div>
+                <?php endif; ?>
+                
+               
+                
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'username') ?>
@@ -52,11 +59,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'telephone')->widget(\yii\widgets\MaskedInput::className(), [
                     'mask' => '9999999999',
                 ]) ?>
-                <?= $form->field($model, 'captcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())->label(FALSE) ?>
+                <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className(),
+                    [
+                        //'jsCallback'=>'function(data){alert(data); return false;}'
+                    ])->label(FALSE); ?>
+                 
+                
+                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block', 'id'=>'btnSubmit']) ?>
 
-                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
-
-                <?php ActiveForm::end(); ?>
+                
             </div>
         </div>
         <p class="text-center">
@@ -64,3 +75,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
 </div>
+<?php ActiveForm::end(); ?>
+ 
