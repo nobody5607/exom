@@ -6,13 +6,13 @@ use yii\helpers\Html;
 
 \cpn\chanpan\assets\bootbox\BootBoxAsset::register($this);
 \cpn\chanpan\assets\notify\NotifyAsset::register($this);
-if (Yii::$app->controller->action->id === 'login') { 
- 
-    echo $this->render(
-        'main-login',
-        ['content' => $content]
-    );
-} else {
+//if (Yii::$app->controller->action->id === 'login') { 
+// 
+//    echo $this->render(
+//        'main',
+//        ['content' => $content]
+//    );
+//} else {
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -62,4 +62,4 @@ if (Yii::$app->controller->action->id === 'login') {
     </body>
     </html>
     <?php $this->endPage() ?>
-<?php  } ?>
+<?php  //} ?>

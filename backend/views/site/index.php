@@ -1,59 +1,57 @@
 <?php
+  cpn\chanpan\assets\jzoom\JZoomAsset::register($this); 
+  use yii\helpers\Url;
+  use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-use yii\helpers\Html;
-use yii\helpers\Url;
-$this->title = 'My Yii Application';
+   cpn\chanpan\widgets\JZoom::widget([
+      'src'=> Url::to('@web/img/bg1.jpg'),
+      'options'=>[
+          'width'=>'500',
+          'height'=>'300',
+          'type'=>'lens',
+          'lensSize'=>500,
+          'scrollZoom'=>true
+      ]
+  ]);
+    
+  
 ?>
-<?php  echo Yii::t('backend','Home');?>
-<div class="language-bar">
-    <?php
-    echo Html::a('th', Url::current(['language' => 'th-TH']), ['class' => (Yii::$app->request->cookies['language'] == 'th-TH' ? 'active' : '')]);
-    echo " | ";
-    echo Html::a('en', Url::current(['language' => 'en-US']), ['class' => (Yii::$app->request->cookies['language'] == 'en-US' ? 'active' : '')]);
-    ?>
-</div>
-<?php 
-        echo \cpn\chanpan\widgets\CNOrgChart::widget([
-            'data' => [
-                [['v' => 'Mike', 'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /> <strong>Mike</strong><br  />The President'], '', 'The President'],
-                [['v' => 'Jim', 'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /><strong>Jim</strong><br  />The Test'], 'Mike', 'VP'],
-                [['v' => 'ทดสอบ', 'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /><strong>ทดสอบ</strong><br  />The Test'], 'Mike', ''],
-                [['v' => 'Caral', 'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /><strong>Caral</strong><br  />The Test'], 'Mike', 'Caral Title'],
-                [['v' => 'Bob', 'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /><strong>Bob</strong><br  />The Test'], 'Jim', 'Bob Sponge'],
-                [
-                    [
-                        'v' => 'Nut', 
-                        'f' => '<img style="width:180px;height:200px" src="http://www.majorcineplex.com/uploads/content/2551/skkltn.jpg" /><br  /><strong>Nut</strong><br  />Chanpan'
-                    ], 'Caral', 'Bob Sponge'],
-            ]
+
+<div class="row">
+    <div class="col-md-10">
+        <?php 
+        echo \cpn\chanpan\widgets\JLightBox::widget([
+            'image'=>[
+                  ['src'=>Url::to('@web/img/bg1.jpg'), 'content'=>'image1', 'options'=>['width'=>'300']],
+                  ['src'=>Url::to('@web/img/bg2.jpg'), 'content'=>'image2','options'=>['width'=>'300']],
+                  ['src'=>Url::to('@web/img/bg3.jpg'), 'content'=>'image3','options'=>['width'=>'300']],
+            ]    
         ]);
-?>
-
-
-<?php 
-    echo \cpn\chanpan\widgets\CNModal::widget([
-       'id' => 'modal-test',
-        'size' => 'modal-lg',
-        'tabindexEnable' => false,
-        'clientOptions' => ['backdrop' => 'static', 'keyboard' => false] 
-    ]);
-?>
-<?php 
-    $js="
-        test=function(){
-            let url = '".Url::to(['/site/test'])."';
-            modalCoreField(url);    
-        }
-          
-        function modalCoreField(url) {
-            $('#modal-test .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
-            $('#modal-test').modal('show')
-            .find('.modal-content')
-            .load(url);
-        }
-    ";
-    $this->registerJs($js);
-?>
-
- 
+        
+         cpn\chanpan\widgets\JSlide::widget([
+                'image'=>[
+                  ['src'=>Url::to('@web/img/bg1.jpg'), 'content'=>'image1'],
+                  ['src'=>Url::to('@web/img/bg2.jpg'), 'content'=>'image2'],
+                  ['src'=>Url::to('@web/img/bg3.jpg'), 'content'=>'image3'],
+//                  ['src'=>Url::to('@web/img/bg4.jpg'), 'content'=>'image4'],
+//                  ['src'=>Url::to('@web/img/bg5.jpg'), 'content'=>'image5'],
+//                  ['src'=>Url::to('@web/img/bg6.jpg'), 'content'=>'image6'],
+//                  ['src'=>Url::to('@web/img/bg7.jpg'), 'content'=>'image7'],
+//                  ['src'=>Url::to('@web/img/bg8.jpg'), 'content'=>'image8'],
+//                  ['src'=>Url::to('@web/img/bg9.jpg'), 'content'=>'image9'],
+//                  ['src'=>Url::to('@web/img/bg1.jpg'), 'content'=>'image10'],
+//                  ['src'=>Url::to('@web/img/bg2.jpg'), 'content'=>'image11'],
+//                  ['src'=>Url::to('@web/img/bg3.jpg'), 'content'=>'image12'],
+//                  ['src'=>Url::to('@web/img/bg4.jpg'), 'content'=>'image13'],
+//                  ['src'=>Url::to('@web/img/bg5.jpg'), 'content'=>'image14'],
+//                  ['src'=>Url::to('@web/img/bg6.jpg'), 'content'=>'image15'],
+//                  ['src'=>Url::to('@web/img/bg7.jpg'), 'content'=>'image16'],
+//                  ['src'=>Url::to('@web/img/bg8.jpg'), 'content'=>'image17'],
+//                  ['src'=>Url::to('@web/img/bg9.jpg'), 'content'=>'image18'],
+//                  ['src'=>Url::to('@web/img/bg1.jpg'), 'content'=>'image19'],
+//                  ['src'=>Url::to('@web/img/bg2.jpg'), 'content'=>'image20']  
+                ],
+            ])
+        ?>
+    </div>
+</div>
