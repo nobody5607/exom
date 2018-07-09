@@ -16,7 +16,10 @@ class JZoom extends \yii\base\Widget{
      * $options['scrollZoom'] type boolean true or false
      */
     public $img = '';
-    public $options = [];
+    public $options = [
+        'class'=>'',
+        'id'=>''
+    ];
     public $src = '';
     public function init() {
         parent::init();
@@ -40,10 +43,10 @@ class JZoom extends \yii\base\Widget{
         $view = $this->getView();
         \cpn\chanpan\assets\jzoom\JZoomAsset::register($view);
         $js="
-            var id = '".$this->options['id']."';
-            var type = '".$this->options['type']."';
-            var lensSize = '".$this->options['lensSize']."';
-            var scrollZoom = '".$this->options['scrollZoom']."';
+            var id = '".isset($this->options['id']) ? $this->options['id'] : ''."';
+            var type = '".isset($this->options['type']) ? $this->options['type'] : ''."';
+            var lensSize = '".isset($this->options['lensSize']) ? $this->options['lensSize'] : ''."';
+            var scrollZoom = '".isset($this->options['scrollZoom']) ? $this->options['scrollZoom'] : ''."';
                 
             if(id == ''){
                 id = 'zoom_01';

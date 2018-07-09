@@ -9,22 +9,24 @@ class JLightBox extends \yii\base\Widget{
         'content'=>'',
         'options'=>[]
     ];
-    public $content=''; 
+    public $options; 
     public function init() {
         parent::init();
     }
     public function run() {
         parent::run();
         $html = "";
-        $html .= Html::beginTag("DIV", ['class'=>'demo-gallery']);
-            $html .= Html::beginTag("DIV", ['id'=>'lightgallery']);
-                foreach($this->image as $key=>$value){
-                    $html .= Html::beginTag("DIV", ['data-src'=>"{$value['src']}", 'data-sub-html'=>"{$value['content']}"]);
-                        $html .= Html::a(Html::img($value['src'], $value['options']), '#', []);
-                    $html .= Html::endTag("DIV");
-                }
-                
-            $html .= Html::endTag("DIV");         
+        $html .= Html::beginTag("DIV", $this->options);
+            $html .= Html::beginTag("DIV", ['class'=>'demo-gallery']);
+                $html .= Html::beginTag("DIV", ['id'=>'lightgallery']);
+                    foreach($this->image as $key=>$value){
+                        $html .= Html::beginTag("DIV", ['data-src'=>"{$value['src']}", 'data-sub-html'=>"{$value['content']}"]);
+                            $html .= Html::a(Html::img($value['src'], $value['options']), '#', []);
+                        $html .= Html::endTag("DIV");
+                    }
+
+                $html .= Html::endTag("DIV");         
+            $html .= Html::endTag("DIV");
         $html .= Html::endTag("DIV"); 
         $this->registerScript();
         echo $html;

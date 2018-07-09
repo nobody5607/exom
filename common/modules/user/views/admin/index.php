@@ -7,103 +7,113 @@ use appxq\sdii\widgets\GridView;
 use appxq\sdii\widgets\ModalForm;
 use appxq\sdii\helpers\SDNoty;
 use appxq\sdii\helpers\SDHtml;
-use Yii;
+ 
 
  
-$this->title = Yii::t('chanpan', 'Member Management System');
+$this->title = Yii::t('appmenu', 'Member Management System');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+ 
 <div class="panel panel-default">
-    <div class="panel-body">
-        <div class="sdbox-header">
-            <h3><i class="fa fa-users"></i> <?=  Html::encode($this->title) ?></h3><hr />
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-title">
+                    <i class="mdi mdi-account-multiple"></i> <?= Html::encode($this->title); ?>
+                    <?= Html::button("<i class='mdi mdi-plus-circle'></i> ".Yii::t('user', 'Add User'), ['class'=>'btn btn-success btn-xs pull-right btnAddUser'])?> 
+                </div>
+            </div>
+        </div>
     </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="panel-body">
+        <?php  Pjax::begin(['id'=>'user-grid-pjax']);?>
+        <div class="table-responsive">
+            <?= kartik\grid\GridView::widget([
+                'id' => 'user-grid',
+                //'panelBtn' => Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['/user/admin/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-user', 'disabled'=>true]),
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
 
-    <?php  Pjax::begin(['id'=>'user-grid-pjax']);?>
-    <?= GridView::widget([
-	'id' => 'user-grid',
-	//'panelBtn' => Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['/user/admin/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-user', 'disabled'=>true]),
-	'dataProvider' => $dataProvider,
-	'filterModel' => $searchModel,
-        'columns' => [
-	   
-	    [
-		'class' => 'yii\grid\SerialColumn',
-		'headerOptions' => ['style'=>'text-align: center;'],
-		'contentOptions' => ['style'=>'width:60px;text-align: center;'],
-	    ],
-            [
-                'format'=>'email',
-                'attribute' => 'email',
-                'label' => Yii::t('chanpan', 'Email'),
-                'value' => 'email',
+                    [
+                        'class' => 'yii\grid\SerialColumn',
+                        'headerOptions' => ['style'=>'text-align: center;'],
+                        'contentOptions' => ['style'=>'width:60px;text-align: center;'],
+                    ],
+                    [
+                        'contentOptions' => ['style'=>'width:150px;text-align: left;'], 
+                        'format'=>'email',
+                        'attribute' => 'email',
+                        'label' => Yii::t('chanpan', 'Email'),
+                        'value' => 'email',
 
-            ],
-            [
-                'attribute' => 'username',
-                'value' => 'username',
-                'headerOptions'=>['style'=>'width:10px']
-            ],
-            [
-                'attribute' => 'firstname',
-                'label' => Yii::t('chanpan', 'First name'),
-                'value' => 'profile.firstname',
+                    ],
+                    [
+                        'contentOptions' => ['style'=>'width:150px;text-align: left;'],
+                        'attribute' => 'username',
+                        'value' => 'username',
+                        'headerOptions'=>['style'=>'width:10px']
+                    ],
+                    [
+                        'attribute' => 'firstname',
+                        'label' => Yii::t('chanpan', 'First name'),
+                        'value' => 'profile.firstname',
 
-            ],
-            [
-                'attribute' => 'lastname',
-                'label' => Yii::t('chanpan', 'Last name'),
-                'value' => 'profile.lastname',
+                    ],
+                    [
+                        'attribute' => 'lastname',
+                        'label' => Yii::t('chanpan', 'Last name'),
+                        'value' => 'profile.lastname',
 
-            ], 
-            [
-                'attribute' => 'created_at',
-                'value' => function ($model) {
-                    if (extension_loaded('intl')) {
-                        return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
-                    } else {
-                        return date('Y-m-d G:i:s', $model->created_at);
-                    }
-                },
+                    ], 
+                    [
+                        'attribute' => 'created_at',
+                        'value' => function ($model) {
+                            if (extension_loaded('intl')) {
+                                return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
+                            } else {
+                                return date('Y-m-d G:i:s', $model->created_at);
+                            }
+                        },
 
-            ],
+                    ],
 
-	    [
-		'class' => 'appxq\sdii\widgets\ActionColumn',
-		'contentOptions' => ['style'=>'width:80px;text-align: center;'],
-		'template' => '{update} {delete}',
-                'buttons'=>[
-                    'update'=>function($url, $model){
-                        return Html::a('<span class="fa fa-edit"></span> '.Yii::t('chanpan', 'Edit'), 
-                                    yii\helpers\Url::to(['/user/admin/update-profile/', 'id'=>$model->id]), [
-                                    'title' => Yii::t('chanpan', 'Edit'),
-                                    'class' => 'btn btn-warning btn-xs',
-                                    'data-action'=>'update',
-                                    'data-pjax'=>0
-                        ]);
-                    },
-                    'delete' => function ($url, $model) {
-                        if($model->id != \Yii::$app->user->getId()){
-                            return Html::a('<span class="fa fa-trash"></span> '.Yii::t('chanpan', 'Delete'), 
-                                    yii\helpers\Url::to(['/user/admin/delete/','id'=>$model->id]), [
-                                    'title' => Yii::t('chanpan', 'Delete'),
-                                    'class' => 'btn btn-danger btn-xs',
-                                    'data-confirm' => Yii::t('chanpan', 'Are you sure you want to delete this item?'),
-                                    'data-method' => 'post',
-                                    'data-action' => 'delete',
-                                    'data-pjax'=>0
-                            ]);
-                        }
-                        
-                            
-                        
-                    },
-                ]
-	    ],
-        ],
-    ]); ?>
+                    [
+                        'class' => 'appxq\sdii\widgets\ActionColumn',
+                        'contentOptions' => ['style'=>'width:80px;text-align: center;'],
+                        'template' => '{update} {delete}',
+                        'buttons'=>[
+                            'update'=>function($url, $model){
+                                return Html::a('<span class="fa fa-edit"></span> '.Yii::t('chanpan', 'Edit'), 
+                                            yii\helpers\Url::to(['/user/admin/update-profile/', 'id'=>$model->id]), [
+                                            'title' => Yii::t('user', 'Edit'),
+                                            'class' => 'btn btn-warning btn-sm',
+                                            'data-action'=>'update',
+                                            'data-pjax'=>0
+                                ]);
+                            },
+                            'delete' => function ($url, $model) {
+                                if($model->id != \Yii::$app->user->getId()){
+                                    return Html::a('<span class="fa fa-trash"></span> '.Yii::t('chanpan', 'Delete'), 
+                                            yii\helpers\Url::to(['/user/admin/delete/','id'=>$model->id]), [
+                                            'title' => Yii::t('chanpan', 'Delete'),
+                                            'class' => 'btn btn-danger btn-sm',
+                                            'data-confirm' => Yii::t('user', 'Are you sure you want to delete this item?'),
+                                            'data-method' => 'post',
+                                            'data-action' => 'delete',
+                                            'data-pjax'=>0
+                                    ]);
+                                }
+
+
+
+                            },
+                        ]
+                    ],
+                ],
+            ]); ?>
+        </div>     
     <?php  Pjax::end();?>
     </div>
 </div>
@@ -111,6 +121,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <?=  ModalForm::widget([
     'id' => 'modal-user',
     'size'=>'modal-lg',
+    'options'=>[
+        
+    ]
 ]);
 ?>
 
@@ -197,7 +210,11 @@ function selectionUserGrid(url) {
 	});
     });
 }
-
+$('.btnAddUser').on('click', function(){
+    let url = '<?= Url::to(['/user/admin/create'])?>';
+    modalUser(url);
+    return false;
+});
 function modalUser(url) {
     $('#modal-user .modal-content').html('<div class=\"sdloader \"><i class=\"sdloader-icon\"></i></div>');
     $('#modal-user').modal('show')
@@ -206,3 +223,6 @@ function modalUser(url) {
 }
 </script>
 <?php  \richardfan\widget\JSRegister::end(); ?>
+
+
+ 

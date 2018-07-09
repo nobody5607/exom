@@ -4,12 +4,16 @@ namespace common\modules\user\models;
 use dektrium\user\models\UserSearch as BaseUserSearch;
 use yii\data\ActiveDataProvider;
 class UserSearch extends BaseUserSearch{
-    public $q;
+    public $firstname;
+    public $lastname;
+    public $sitecode;
     public function rules()
     {
-        parent::rules();
-        return [            
-            [['q'], 'safe'],
+         
+        return [
+            'fieldsSafe' => [['id', 'username', 'email', 'registration_ip', 'created_at', 'last_login_at', 'firstname', 'lastname', 'sitecode'], 'safe'],
+            'createdDefault' => ['created_at', 'default', 'value' => null],
+            'lastloginDefault' => ['last_login_at', 'default', 'value' => null],
         ];
     }
     public function search($params)
@@ -54,13 +58,13 @@ class UserSearch extends BaseUserSearch{
             $query->andFilterWhere(['between', $table_name . '.created_at', $date, $date + 3600 * 24]);
         }
 
-        $query->orFilterWhere(['like', $table_name . '.username', $this->q])
-              ->orFilterWhere(['like', $table_name . '.email', $this->q])
-              ->orFilterWhere([$table_name . '.id' => $this->id])
-              ->orFilterWhere(['like', 'profile.firstname', $this->q])
-              ->orFilterWhere(['like', 'profile.lastname', $this->q])
-              ->orFilterWhere(['like', 'profile.sitecode', $this->q])
-              ->orFilterWhere([$table_name . 'registration_ip' => $this->registration_ip]);
+        $query->andFilterWhere(['like', $table_name . '.username', $this->username])
+              ->andFilterWhere(['like', $table_name . '.email', $this->email])
+              ->andFilterWhere([$table_name . '.id' => $this->id])
+                ->andFilterWhere(['like', 'profile.firstname', $this->firstname])
+                ->andFilterWhere(['like', 'profile.lastname', $this->lastname])
+                ->andFilterWhere(['like', 'profile.sitecode', $this->sitecode])
+              ->andFilterWhere([$table_name . 'registration_ip' => $this->registration_ip]);
 
         return $dataProvider;
     }

@@ -1,37 +1,14 @@
 <aside class="main-sidebar" id="leftMenu">
 
     <section class="sidebar">
-
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+ 
 
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+//                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'Home', 'icon' => 'home', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
@@ -60,23 +37,24 @@
                             ],
                         ],
                     ],
+                    ['label' => Yii::t('appmenu','Member Management'), 'icon' => 'users', 'url' => ['/user/admin/index'],],
                     [
-                        'label' => 'System Config',
+                        'label' => Yii::t('appmenu', 'System Config'),
                         'icon' => 'cog',
                         'url' => '#',
                         'items' => [
                             //['label' => 'Authentication', 'icon' => 'cogs', 'url' => ['/admin/role/view?id=admin'],],
-                            ['label' => 'User Management', 'icon' => 'users', 'url' => ['/user/admin/index'],],
+                            
                             [
-                                'label' => 'Authentication',
+                                'label' => Yii::t('appmenu', 'Authentication'),
                                 'icon' => 'cogs',
                                 'url' => '#',
                                 'items' => [
                                     //Assignments
-                                    ['label' => 'Assignments', 'icon' => 'circle-o', 'url' => ['/admin'],],
-                                    ['label' => 'Role', 'icon' => 'circle-o', 'url' => ['/admin/role'],],
-                                    ['label' => 'Route', 'icon' => 'circle-o', 'url' => ['/admin/route'],],
-                                    ['label' => 'Permission', 'icon' => 'circle-o', 'url' => ['/admin/permission'],],
+                                    ['label' => Yii::t('appmenu', 'Assignments'), 'icon' => 'circle-o', 'url' => ['/admin'],],
+                                    ['label' => Yii::t('appmenu', 'Role'), 'icon' => 'circle-o', 'url' => ['/admin/role'],],
+                                    ['label' => Yii::t('appmenu', 'Route'), 'icon' => 'circle-o', 'url' => ['/admin/route'],],
+                                    ['label' => Yii::t('appmenu', 'Permission'), 'icon' => 'circle-o', 'url' => ['/admin/permission'],],
 //                                    [
 //                                        'label' => 'Level Two',
 //                                        'icon' => 'circle-o',

@@ -23,6 +23,7 @@ class AdminController extends BaseAdminController{
     }
     public function actionUpdateProfile($id)
     {
+        
         if (Yii::$app->getRequest()->isAjax) {
             $request = Yii::$app->request;
             Url::remember('', 'actions-redirect');

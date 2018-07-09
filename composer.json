@@ -36,7 +36,14 @@
         "kartik-v/yii2-grid": "@dev",
         "richardfan1126/yii2-js-register": "*",
         "himiklab/yii2-recaptcha-widget": "*",
-        "johnitvn/yii2-ajaxcrud": "*"
+        "johnitvn/yii2-ajaxcrud": "*",
+        "vova07/yii2-imperavi-widget": "*",
+        "yurkinx/yii2-image": "dev-master",
+        "2amigos/yii2-date-picker-widget" : "~1.0",
+        "2amigos/yii2-gallery-widget" : "*",
+        "meysampg/yii2-formbuilder": "*",
+        "sansusan/yii2-jqwidgets-asset": "dev-master",
+        "loveorigami/yii2-slimscroll-widget": "*"
         
     },
     "require-dev": {
