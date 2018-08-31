@@ -19,11 +19,14 @@ $rules = array_keys(Configs::authManager()->getRules());
 $rules = array_combine($rules, $rules);
 unset($rules[RouteRule::RULE_NAME]);
 ?>
-<div class="role-index">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <p>
-        <?= Html::a(Yii::t('rbac-admin', 'Create ' . $labels['Item']), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="box box-primary">
+    <div class="box-header">
+        <label><?= Html::encode($this->title) ?></label>
+        <div class="pull-right">
+            <?= Html::a("<i class='fa fa-plus'></i> ".Yii::t('rbac-admin', 'Create ' . $labels['Item']), ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
+    <div class="box-body">  
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
@@ -47,5 +50,5 @@ unset($rules[RouteRule::RULE_NAME]);
         ],
     ])
     ?>
-
+    </div>
 </div>

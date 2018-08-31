@@ -8,7 +8,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 //                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Home', 'icon' => 'home', 'url' => ['/gii']],
+                    ['label' => 'Home', 'icon' => 'home', 'url' => ['/']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [

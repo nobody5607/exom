@@ -37,10 +37,9 @@ $columns[] = [
                 ]
 	    ];
 ?>
-<div class="panel panel-default">
-<div class="panel-body">
-
-    <h3><i class="fa fa-cogs"></i> <?= Html::encode($this->title) ?></h3><hr />
+<div class="box box-primary">
+    <div class="box-header"><i class="fa fa-cogs"></i> <?= Html::encode($this->title) ?></div>    
+<div class="box-body"> 
     <?php Pjax::begin(); ?>
     <?=
     appxq\sdii\widgets\GridView::widget([

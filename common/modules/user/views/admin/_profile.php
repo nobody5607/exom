@@ -40,8 +40,12 @@ $this->title = Yii::t('chanpan', 'Update').' '.Yii::t('chanpan', 'User');
     <?= $form->field($profile, 'sitecode') ?>
 </div>
 <div class="modal-footer">
-	<?= Html::submitButton($profile->isNewRecord ? Yii::t('app', 'Create') : Yii::t('chanpan', 'Update'), ['class' => $profile->isNewRecord ? 'btn btn-success btn-lg' : 'btn btn-primary btn-lg']) ?>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <?= Html::submitButton(Yii::t('_user', 'Save'), ['class' => 'btn btn-primary btn-lg btn-lg btn-block']) ?>
+        </div>
     </div>
+</div>
 
 <?php ActiveForm::end(); ?>
  <?php  \richardfan\widget\JSRegister::begin([

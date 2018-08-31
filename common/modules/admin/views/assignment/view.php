@@ -30,11 +30,13 @@ $this->registerJs("var _opts = {$opts};");
 $this->registerJs($this->render('_script.js'));
 $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>';
 ?>
-<div class="panel panel-default">
-    <div class="panel-body">
+<div class="box box-primary">
+    <div class="box-header">
+        <i class="fa fa-cogs"></i> <?= Html::encode($this->title) ?>
+    </div>
+    <div class="box-body">
         <div class="assignment-index">
-           <h3><i class="fa fa-cogs"></i> <?= Html::encode($this->title) ?></h3><hr />
-
+           
             <div class="row">
                 <div class="col-sm-5">
                     <input class="form-control search" data-target="available"

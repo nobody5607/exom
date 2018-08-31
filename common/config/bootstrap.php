@@ -9,6 +9,6 @@ Yii::setAlias('storage', dirname(dirname(__DIR__)) . '/storage');
 
 
 // Url Aliases
-Yii::setAlias('@storageUrl', 'http://storage.master.lc/');
-Yii::setAlias('@backendUrl', 'http://backend.master.test/');
-Yii::setAlias('@frontendUrl', 'http://master.test/');
+Yii::setAlias('@frontendUrl', 'http://shop.local');
+Yii::setAlias('@backendUrl', 'http://backend.shop.local');
+Yii::setAlias('@storageUrl', 'http://storage.shop.local');

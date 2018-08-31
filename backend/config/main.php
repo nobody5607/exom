@@ -76,6 +76,7 @@ return [
             'layout' => '@app/views/layouts/main.php',
 //            'layout' => 'left-menu',
             'controllerMap' => [
+                'role'=>'common\modules\admin\controllers\RoleController',
                 'assignment' => [
                     'class' => 'common\modules\admin\controllers\AssignmentController',
                     //'userClassName' => 'dektrium\user\models\User', 
@@ -100,7 +101,8 @@ return [
                 'settings' => 'common\modules\user\controllers\SettingsController',
                 'registration' => 'common\modules\user\controllers\RegistrationController',
                 'security'=>'common\modules\user\controllers\SecurityController',
-                'recovery'=>'common\modules\user\controllers\RecoveryController'
+                'recovery'=>'common\modules\user\controllers\RecoveryController',
+                
             ],
         ],
         
@@ -110,7 +112,6 @@ return [
         'allowActions' => [
             //module, controller, action ที่อนุญาตให้ทำงานโดยไม่ต้องผ่านการตรวจสอบสิทธิ์
             'site/*',
-            'user/*'
             //'admin/*',
         ]
     ],

@@ -15,18 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
  
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="box box-primary">
+    <div class="box-header">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel-title">
-                    <i class="mdi mdi-account-multiple"></i> <?= Html::encode($this->title); ?>
-                    <?= Html::button("<i class='mdi mdi-plus-circle'></i> ".Yii::t('user', 'Add User'), ['class'=>'btn btn-success btn-xs pull-right btnAddUser'])?> 
+                    <i class="fa fa-user"></i> <?= Html::encode($this->title); ?>
                 </div>
             </div>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="box-body">
         <?php  Pjax::begin(['id'=>'user-grid-pjax']);?>
         <div class="table-responsive">
             <?= kartik\grid\GridView::widget([
@@ -85,10 +84,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'template' => '{update} {delete}',
                         'buttons'=>[
                             'update'=>function($url, $model){
-                                return Html::a('<span class="fa fa-edit"></span> '.Yii::t('chanpan', 'Edit'), 
+                                return Html::a('<span class="fa fa-pencil"></span> '.Yii::t('chanpan', 'Edit'), 
                                             yii\helpers\Url::to(['/user/admin/update-profile/', 'id'=>$model->id]), [
                                             'title' => Yii::t('user', 'Edit'),
-                                            'class' => 'btn btn-warning btn-sm',
+                                            'class' => 'btn btn-primary btn-sm',
                                             'data-action'=>'update',
                                             'data-pjax'=>0
                                 ]);

@@ -45,21 +45,21 @@ class Profile extends BaseProfile{
     public function attributeLabels()
     {
 	$labels = [             
-            'tel'            => Yii::t('chanpan', 'Telephone number'),
-            'sitecode'       => Yii::t('chanpan','Sitecode'),
-            'name'           => Yii::t('chanpan', 'Nickname'),
-            'firstname'      => Yii::t('chanpan', 'First name'),
-            'lastname'       => Yii::t('chanpan', 'Last name'),
-            'public_email'   => Yii::t('chanpan', 'Email (public)'),
-            'gravatar_email' => Yii::t('chanpan', 'Gravatar email'),
-            'location'       => Yii::t('chanpan', 'Location'),
-            'website'        => Yii::t('chanpan', 'Website'),
-            'bio'            => Yii::t('chanpan', 'Birth date'),
-            'image'          => Yii::t('chanpan', 'My Picture'),
-            'public_email'   => Yii::t('chanpan', 'Email'),
-            'location'      => Yii::t('chanpan', 'Location'),
-            'timezone'      => Yii::t('chanpan', 'Timezone'),
-            'image'         => Yii::t('chanpan', 'My Picture'),
+            'tel'            => Yii::t('_user', 'Telephone number'),
+            'sitecode'       => Yii::t('_user','Sitecode'),
+            'name'           => Yii::t('_user', 'Nickname'),
+            'firstname'      => Yii::t('_user', 'First name'),
+            'lastname'       => Yii::t('_user', 'Last name'),
+            'public_email'   => Yii::t('_user', 'Email (public)'),
+            'gravatar_email' => Yii::t('_user', 'Gravatar email'),
+            'location'       => Yii::t('_user', 'Location'),
+            'website'        => Yii::t('_user', 'Website'),
+            'bio'            => Yii::t('_user', 'Birth date'),
+            'image'          => Yii::t('_user', 'My Picture'),
+            'public_email'   => Yii::t('_user', 'Email'),
+            'location'      => Yii::t('_user', 'Location'),
+            'timezone'      => Yii::t('_user', 'Timezone'),
+            'image'         => Yii::t('_user', 'My Picture'),
         ];
 	
 	 

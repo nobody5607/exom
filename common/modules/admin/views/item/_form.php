@@ -42,11 +42,13 @@ $this->registerJs($js);
         </div>
     </div>
     <div class="form-group">
-        <?php
-        echo Html::submitButton($model->isNewRecord ? Yii::t('rbac-admin', 'Create') : Yii::t('rbac-admin', 'Update'), [
-            'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
-            'name' => 'submit-button'])
-        ?>
+        <div class="col-md-6 col-md-offset-3">
+            <?php
+                echo Html::submitButton($model->isNewRecord ? Yii::t('rbac-admin', 'Create') : Yii::t('rbac-admin', 'Update'), [
+                    'class' => $model->isNewRecord ? 'btn btn-success btn-lg btn-block' : 'btn btn-primary btn-lg btn-block',
+                    'name' => 'submit-button'])
+                ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

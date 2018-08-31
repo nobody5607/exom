@@ -49,7 +49,7 @@ return [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@backend/messages',
                     'fileMap' => [
-                        'chanpan' => 'chanpan.php',
+                        //'users' => 'users.php',
                     ],
                 ],
                 'frontend*' => [

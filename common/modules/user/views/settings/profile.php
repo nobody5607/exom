@@ -20,7 +20,7 @@ use yii\helpers\ArrayHelper;
  * @var dektrium\user\models\Profile $model
  */
 
-$this->title = Yii::t('user', 'Profile settings');
+$this->title = Yii::t('_user', 'Profile settings');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+                        <?= Html::submitButton(Yii::t('_user', 'Save'), ['class' => 'btn btn-block btn-success btn-lg']) ?>
                         <br>
                     </div>
                 </div>

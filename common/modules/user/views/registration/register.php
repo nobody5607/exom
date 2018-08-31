@@ -59,10 +59,7 @@ $form = ActiveForm::begin([
                 <?= $form->field($model, 'telephone')->widget(\yii\widgets\MaskedInput::className(), [
                     'mask' => '9999999999',
                 ]) ?>
-                <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className(),
-                    [
-                        //'jsCallback'=>'function(data){alert(data); return false;}'
-                    ])->label(FALSE); ?>
+                
                  
                 
                 <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block', 'id'=>'btnSubmit']) ?>
