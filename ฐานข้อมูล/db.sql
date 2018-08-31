@@ -4,32 +4,16 @@ Navicat MySQL Data Transfer
 Source Server         : local
 Source Server Version : 50714
 Source Host           : 127.0.0.1:3306
-Source Database       : master
+Source Database       : shop_core
 
 Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-07-11 09:54:23
+Date: 2018-08-31 16:18:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for activities
--- ----------------------------
-DROP TABLE IF EXISTS `activities`;
-CREATE TABLE `activities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `create_by` bigint(20) DEFAULT NULL,
-  `update_by` bigint(20) DEFAULT NULL,
-  `forder` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for auth_assignment
@@ -43,6 +27,11 @@ CREATE TABLE `auth_assignment` (
   KEY `auth_assignment_user_id_idx` (`user_id`),
   CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of auth_assignment
+-- ----------------------------
+INSERT INTO `auth_assignment` VALUES ('admin', '1', '1535696400');
 
 -- ----------------------------
 -- Table structure for auth_item
@@ -63,6 +52,16 @@ CREATE TABLE `auth_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
+-- Records of auth_item
+-- ----------------------------
+INSERT INTO `auth_item` VALUES ('/admin/*', '2', null, null, null, '1535696373', '1535696373');
+INSERT INTO `auth_item` VALUES ('/core/*', '2', null, null, null, '1535699352', '1535699352');
+INSERT INTO `auth_item` VALUES ('/gii/*', '2', null, null, null, '1535706951', '1535706951');
+INSERT INTO `auth_item` VALUES ('/user/*', '2', null, null, null, '1535697098', '1535697098');
+INSERT INTO `auth_item` VALUES ('admin', '1', 'Admin', null, null, '1535696302', '1535696302');
+INSERT INTO `auth_item` VALUES ('user', '1', 'User', null, null, '1535696315', '1535696315');
+
+-- ----------------------------
 -- Table structure for auth_item_child
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_item_child`;
@@ -76,6 +75,14 @@ CREATE TABLE `auth_item_child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
+-- Records of auth_item_child
+-- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('admin', '/admin/*');
+INSERT INTO `auth_item_child` VALUES ('admin', '/core/*');
+INSERT INTO `auth_item_child` VALUES ('admin', '/gii/*');
+INSERT INTO `auth_item_child` VALUES ('admin', '/user/*');
+
+-- ----------------------------
 -- Table structure for auth_rule
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_rule`;
@@ -86,6 +93,10 @@ CREATE TABLE `auth_rule` (
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of auth_rule
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for file_storage_item
@@ -102,73 +113,13 @@ CREATE TABLE `file_storage_item` (
   `upload_ip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Table structure for file_type
+-- Records of file_storage_item
 -- ----------------------------
-DROP TABLE IF EXISTS `file_type`;
-CREATE TABLE `file_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `create_by` bigint(20) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `update_by` bigint(20) DEFAULT NULL,
-  `forder` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Table structure for folders
--- ----------------------------
-DROP TABLE IF EXISTS `folders`;
-CREATE TABLE `folders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `root` int(11) DEFAULT NULL,
-  `lft` int(11) NOT NULL,
-  `rgt` int(11) NOT NULL,
-  `lvl` smallint(5) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `icon_type` tinyint(1) NOT NULL DEFAULT '1',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `selected` tinyint(1) NOT NULL DEFAULT '0',
-  `disabled` tinyint(1) NOT NULL DEFAULT '0',
-  `readonly` tinyint(1) NOT NULL DEFAULT '0',
-  `visible` tinyint(1) NOT NULL DEFAULT '1',
-  `collapsed` tinyint(1) NOT NULL DEFAULT '0',
-  `movable_u` tinyint(1) NOT NULL DEFAULT '1',
-  `movable_d` tinyint(1) NOT NULL DEFAULT '1',
-  `movable_l` tinyint(1) NOT NULL DEFAULT '1',
-  `movable_r` tinyint(1) NOT NULL DEFAULT '1',
-  `removable` tinyint(1) NOT NULL DEFAULT '1',
-  `removable_all` tinyint(1) NOT NULL DEFAULT '0',
-  `child_allowed` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `tbl_product_NK1` (`root`),
-  KEY `tbl_product_NK2` (`lft`),
-  KEY `tbl_product_NK3` (`rgt`),
-  KEY `tbl_product_NK4` (`lvl`),
-  KEY `tbl_product_NK5` (`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for knowledge
--- ----------------------------
-DROP TABLE IF EXISTS `knowledge`;
-CREATE TABLE `knowledge` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `create_by` bigint(20) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `update_by` bigint(20) DEFAULT NULL,
-  `icon` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `color` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `forder` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `file_storage_item` VALUES ('106', 'fileStorage', 'http://shop.local/source', '1/HfSgZ0jHjBR0T5af6q5XkXKWyeyEuz7O.png', 'image/png', '3556', 'HfSgZ0jHjBR0T5af6q5XkXKWyeyEuz7O', '::1', '1535699641');
+INSERT INTO `file_storage_item` VALUES ('107', 'fileStorage', 'http://storage.shop.local/source', '1/OuRcwvxrOLzLzvWR5QBNn6No1vd-2yf5.png', 'image/png', '4679', 'OuRcwvxrOLzLzvWR5QBNn6No1vd-2yf5', '::1', '1535700807');
 
 -- ----------------------------
 -- Table structure for menu
@@ -187,14 +138,39 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of menu
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for migration
 -- ----------------------------
 DROP TABLE IF EXISTS `migration`;
 CREATE TABLE `migration` (
-  `version` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(180) NOT NULL,
   `apply_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of migration
+-- ----------------------------
+INSERT INTO `migration` VALUES ('m000000_000000_base', '1535696053');
+INSERT INTO `migration` VALUES ('m140209_132017_init', '1535696058');
+INSERT INTO `migration` VALUES ('m140403_174025_create_account_table', '1535696059');
+INSERT INTO `migration` VALUES ('m140504_113157_update_tables', '1535696063');
+INSERT INTO `migration` VALUES ('m140504_130429_create_token_table', '1535696064');
+INSERT INTO `migration` VALUES ('m140830_171933_fix_ip_field', '1535696065');
+INSERT INTO `migration` VALUES ('m140830_172703_change_account_table_name', '1535696065');
+INSERT INTO `migration` VALUES ('m141222_110026_update_ip_field', '1535696065');
+INSERT INTO `migration` VALUES ('m141222_135246_alter_username_length', '1535696066');
+INSERT INTO `migration` VALUES ('m150614_103145_update_social_account_table', '1535696068');
+INSERT INTO `migration` VALUES ('m150623_212711_fix_username_notnull', '1535696068');
+INSERT INTO `migration` VALUES ('m151218_234654_add_timezone_to_profile', '1535696069');
+INSERT INTO `migration` VALUES ('m160929_103127_add_last_login_at_to_user_table', '1535696069');
+INSERT INTO `migration` VALUES ('m140602_111327_create_menu_table', '1535696117');
+INSERT INTO `migration` VALUES ('m160312_050000_create_user', '1535696117');
+INSERT INTO `migration` VALUES ('m140506_102106_rbac_init', '1535696133');
+INSERT INTO `migration` VALUES ('m170907_052038_rbac_add_index_on_auth_assignment_user_id', '1535696133');
 
 -- ----------------------------
 -- Table structure for profile
@@ -210,15 +186,20 @@ CREATE TABLE `profile` (
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bio` text COLLATE utf8_unicode_ci,
   `timezone` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `avatar_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `avatar_base_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `firstname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `lastname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tel` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sitecode` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar_base_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sitecode` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_user_profile` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of profile
+-- ----------------------------
+INSERT INTO `profile` VALUES ('1', 'nuttaphon chanpan', 'chanpan.nuttaphon1993@gmail.com', 'chanpan.nuttaphon1993@gmail.com', 'd70f6226ff8caba303baede9f0892c0e', '', '', '07/08/1993', null, 'nuttaphon', 'chanpan', '0650859480', '1/OuRcwvxrOLzLzvWR5QBNn6No1vd-2yf5.png', 'http://storage.shop.local/source', null);
 
 -- ----------------------------
 -- Table structure for social_account
@@ -242,14 +223,8 @@ CREATE TABLE `social_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Table structure for test
+-- Records of social_account
 -- ----------------------------
-DROP TABLE IF EXISTS `test`;
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for token
@@ -263,6 +238,10 @@ CREATE TABLE `token` (
   UNIQUE KEY `token_unique` (`user_id`,`code`,`type`),
   CONSTRAINT `fk_user_token` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of token
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -282,23 +261,12 @@ CREATE TABLE `user` (
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
   `last_login_at` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`),
   UNIQUE KEY `user_unique_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Table structure for years
+-- Records of user
 -- ----------------------------
-DROP TABLE IF EXISTS `years`;
-CREATE TABLE `years` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` int(11) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `create_by` bigint(20) DEFAULT NULL,
-  `update_date` datetime DEFAULT NULL,
-  `update_by` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `user` VALUES ('1', 'admin', 'chanpan.nuttaphon1993@gmail.com', '$2y$12$obnECeQ6R8r.lamu.Kdmo.S2OTh1Dh9TvsvfSpGQfpBChgFs3Tz6K', 'KSwmb0yFT6Jf14f82pSAnAedCN44uzAQ', '1535696234', null, null, '::1', '1535696234', '1535696234', '0', null);
