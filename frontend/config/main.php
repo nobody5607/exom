@@ -57,10 +57,24 @@ return [
     'modules'=>[
         'user' => [
             'class' => 'dektrium\user\Module',
+            'enableConfirmation' => FALSE,
             'enableUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
-            'admins' => ['admin']
+            'admins' => ['admin'],//admin
+            'modelMap' => [
+                'User' => 'common\modules\user\models\User',
+                'Profile' => 'common\modules\user\models\Profile',
+                'RegistrationForm' => 'common\modules\user\models\RegistrationForm',
+                'RecoveryForm' =>'common\modules\user\models\RecoveryForm'
+            ],
+            'controllerMap' => [                  
+                'settings' => 'common\modules\user\controllers\SettingsController',
+                'registration' => 'common\modules\user\controllers\RegistrationController',
+                'security'=>'common\modules\user\controllers\SecurityController',
+                'recovery'=>'common\modules\user\controllers\RecoveryController',
+                
+            ],
         ],
     ],
     'params' => $params,

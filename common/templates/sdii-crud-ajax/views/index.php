@@ -29,12 +29,17 @@ $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::ca
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="panel panel-default">
-<div class="panel-body">
-
-    <div class="sdbox-header">
-        <h3><i class="fa fa-table"></i> <?= "<?= " ?> Html::encode($this->title) ?></h3><hr />
+<div class="box box-primary">
+    <div class="box-header">
+         <i class="fa fa-table"></i> <?= "<?= " ?> Html::encode($this->title) ?> 
+         <div class="pull-right">
+             <?php 
+               echo "<?= "?>Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>']). ' ' .
+		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>', 'disabled'=>true]) 
+             ?>
+         </div>
     </div>
+<div class="box-body">    
 <?php if(!empty($generator->searchModelClass)): ?>
 <?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
 <?php endif; ?>
@@ -43,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?php " ?> Pjax::begin(['id'=>'<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid-pjax']);?>
     <?= "<?= " ?>GridView::widget([
 	'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid',
-	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>']). ' ' .
-		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>', 'disabled'=>true]),
+/*	'panelBtn' => Html::button(SDHtml::getBtnAdd(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/create']), 'class' => 'btn btn-success btn-sm', 'id'=>'modal-addbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>']). ' ' .
+		      Html::button(SDHtml::getBtnDelete(), ['data-url'=>Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/deletes']), 'class' => 'btn btn-danger btn-sm', 'id'=>'modal-delbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>', 'disabled'=>true]),*/
 	'dataProvider' => $dataProvider,
 	<?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
 	    [
@@ -139,11 +144,11 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 ]); ?>
 <script>
 // JS script
-$('#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid-pjax').on('click', '#modal-addbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>', function() {
+$('#modal-addbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>').on('click', function() {
     modal<?= Inflector::classify(StringHelper::basename($generator->modelClass)) ?>($(this).attr('data-url'));
 });
 
-$('#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid-pjax').on('click', '#modal-delbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>', function() {
+$('#modal-delbtn-<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>').on('click', function() {
     selection<?= Inflector::classify(StringHelper::basename($generator->modelClass)) ?>Grid($(this).attr('data-url'));
 });
 
@@ -154,7 +159,7 @@ $('#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-g
     },100);
 });
 
-$('#<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid-pjax').on('click', '.selection<?= Inflector::classify(StringHelper::basename($generator->modelClass)) ?>Ids', function() {
+$('.selectionCoreOptionIds').on('click',function() {
     var key = $('input:checked[class=\"'+$(this).attr('class')+'\"]');
     disabled<?= Inflector::classify(StringHelper::basename($generator->modelClass)) ?>Btn(key.length);
 });

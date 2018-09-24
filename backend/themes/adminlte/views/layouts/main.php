@@ -11,13 +11,13 @@ cpn\chanpan\assets\jquery_scroll\JqueryScrollAsset::register($this);
 ?>
  
 <?php
-// if (Yii::$app->controller->action->id === 'login') { 
- 
-//     echo $this->render(
-//         'main',
-//         ['content' => $content]
-//     );
-// } else {
+//// if (Yii::$app->controller->action->id === 'login') { 
+// 
+////     echo $this->render(
+////         'main',
+////         ['content' => $content]
+////     );
+//// } else {
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);

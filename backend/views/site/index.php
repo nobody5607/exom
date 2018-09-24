@@ -1,3 +1,18 @@
+ <?php 
+        use yii\helpers\Url;
+        echo cpn\chanpan\widgets\JSlide::widget([
+                'image'=>[
+                  ['src'=>Url::to('@web/img/bg1.jpg'), 'content'=>'image1'],
+                  ['src'=>Url::to('@web/img/bg2.jpg'), 'content'=>'image2'],
+                  ['src'=>Url::to('@web/img/bg3.jpg'), 'content'=>'image3'],
+                  ['src'=>Url::to('@web/img/bg4.jpg'), 'content'=>'image4'],
+                  ['src'=>Url::to('@web/img/bg5.jpg'), 'content'=>'image5'],
+                  ['src'=>Url::to('@web/img/bg6.jpg'), 'content'=>'image6'],
+     
+                ],
+            ])
+        ?>
+?>
 
 <section class="content"> 
     <!-- Info boxes -->
