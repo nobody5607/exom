@@ -23,12 +23,13 @@ class CNMessage {
         ];
         return $result;
     }
-    public static function getError($message) {
+    public static function getError($message, $data=[]) {
         self::JsonResponses(); 
         $result = [
             'status' => 'error',
             'action' => 'create',
             'message' => \cpn\chanpan\helpers\CNHtml::getMsgError() . Yii::t('chanpan', $message),
+            'data'=>$data
         ];
         return $result;
     }

@@ -9,9 +9,25 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    //'bootstrap' => ['log'],
+    'language' => 'th-TH',//'en-US',
+    'timeZone' => 'Asia/Bangkok',
+    'bootstrap' => ['log', 'frontend\components\AppComponent',
+        [
+            'class' => 'common\components\LanguageSelector',
+            'supportedLanguages' => ['en-US', 'th-TH'], //กำหนดรายการภาษาที่ support หรือใช้ได้
+        ]    
+    ],
+    
     'controllerNamespace' => 'frontend\controllers',    
     'components' => [
+//        'view' => [
+//            'theme' => [
+//                'pathMap' => [
+//                   '@frontend/views' => '@frontend/themes/market'
+//                ],
+//            ],
+//       ],
         'meta' => [
             'class' => 'frontend\components\MetaComponent',
         ],//seo config
@@ -52,6 +68,21 @@ return [
                        '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
+        
+        //language
+        'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            'languages' => ['en-US', 'th-TH'], // List of available languages (icons only)
+            'cookieName' => 'language', // Name of the cookie.
+            'expireDays' => 64, // The expiration time of the cookie is 64 days.
+            'callback' => function() {
+                if (!\Yii::$app->user->isGuest) {
+                    //		    $user = \Yii::$app->user->identity;
+                    //		    $user->language = \Yii::$app->language;
+                    //		    $user->save();
+                }
+            }
+        ],
          
     ],
     'modules'=>[
@@ -75,6 +106,9 @@ return [
                 'recovery'=>'common\modules\user\controllers\RecoveryController',
                 
             ],
+        ],
+        'products' => [
+            'class' => 'frontend\modules\products\modules',
         ],
     ],
     'params' => $params,

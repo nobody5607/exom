@@ -9,6 +9,8 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+\cpn\chanpan\assets\bootbox\BootBoxAsset::register($this);
+\cpn\chanpan\assets\notify\NotifyAsset::register($this);
 
 AppAsset::register($this);
 ?>
@@ -52,8 +54,13 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        
+        
+        ['label' => 'Brand', 'url' => ['/products/stock-brand']],
+        ['label' => 'Category', 'url' => ['/products/stock-category']],
+        ['label' => 'Product Doc', 'url' => ['/products/stock-product-docs']],
+        ['label' => 'Product Group', 'url' => ['/products/stock-product-group']],
+        ['label' => 'Product Items', 'url' => ['/products/stock-product-items']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register']];
