@@ -29,9 +29,9 @@ use cpn\chanpan\widgets\CNMenu;
 
     <nav class="navbar navbar-fixed-top" role="navigation"> 
     <div class="navbar-header">
-      <?= AppComponent::slideToggleRight()?>  
-      <?= AppComponent::slideToggleLeft()?>
-      <a class="navbar-brand" href="#">WebSiteName</a>  
+      <?php// AppComponent::slideToggleRight()?>  
+      <?php// AppComponent::slideToggleLeft()?>
+        <a class="navbar-brand" href="#"><?= Yii::$app->name; ?></a>  
     </div>
 <div class="container-fluid">
     <div class="collapse navbar-collapse" id="cnNavbar">       
