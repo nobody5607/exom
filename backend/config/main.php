@@ -78,11 +78,13 @@ return [
 //            'layout' => 'left-menu',
             'controllerMap' => [
                 'role'=>'common\modules\admin\controllers\RoleController',
+                'user' => 'common\modules\admin\controllers\AdminController',
                 'assignment' => [
                     'class' => 'common\modules\admin\controllers\AssignmentController',
                     //'userClassName' => 'dektrium\user\models\User', 
                 ]
             ],
+            
         ],
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -97,12 +99,13 @@ return [
                 'RegistrationForm' => 'common\modules\user\models\RegistrationForm',
                 'RecoveryForm' =>'common\modules\user\models\RecoveryForm'
             ],
+            
             'controllerMap' => [
-                'admin' => 'common\modules\user\controllers\AdminController',
-                'settings' => 'common\modules\user\controllers\SettingsController',
-                'registration' => 'common\modules\user\controllers\RegistrationController',
-                'security'=>'common\modules\user\controllers\SecurityController',
-                'recovery'=>'common\modules\user\controllers\RecoveryController',
+//                'admin' => 'common\modules\admin\controllers\AdminController',
+//                'settings' => 'common\modules\user\controllers\SettingsController',
+//                'registration' => 'common\modules\user\controllers\RegistrationController',
+//                'security'=>'common\modules\user\controllers\SecurityController',
+//                'recovery'=>'common\modules\user\controllers\RecoveryController',
                 
             ],
         ],

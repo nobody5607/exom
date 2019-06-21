@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
  <br><br><br><br>
 <div class="row">
-    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+    <div class="col-md-4 col-md-offset-4 col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
@@ -92,6 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php ActiveForm::end(); ?>
                 
+                
                 <!-- /.social-auth-links -->
                 <?php if ($module->enableConfirmation): ?>
                     <p class="text-left">
@@ -103,14 +104,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
                     </p>
                 <?php endif ?>
-                <?php
-                //	Connect::widget([
-                 //   		'baseAuthUrl' => ['/user/security/auth'],
-                //	])
-                ?>
+                <?php 
+                echo '<div id="btnLanguage" class="navbar-text text-center" >';
+                echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+                    'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+                    'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
+                ]);
+
+                echo '</div>';
+
+             ?>
             </div>
+            
+            
         </div>
         
     </div>
+     
 </div>
  

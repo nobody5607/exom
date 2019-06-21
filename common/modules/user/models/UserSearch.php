@@ -6,19 +6,19 @@ use yii\data\ActiveDataProvider;
 class UserSearch extends BaseUserSearch{
     public $firstname;
     public $lastname;
-    public $sitecode;
+    public $tel;
     public function rules()
     {
          
         return [
-            'fieldsSafe' => [['id', 'username', 'email', 'registration_ip', 'created_at', 'last_login_at', 'firstname', 'lastname', 'sitecode'], 'safe'],
+            'fieldsSafe' => [['id', 'username', 'email', 'registration_ip', 'created_at', 'last_login_at', 'firstname', 'lastname', 'tel'], 'safe'],
             'createdDefault' => ['created_at', 'default', 'value' => null],
             'lastloginDefault' => ['last_login_at', 'default', 'value' => null],
         ];
     }
     public function search($params)
     {
-        $query = $this->finder->getUserQuery();
+        $query = User::find();
         $query->joinWith(['profile']);
         
         $dataProvider = new ActiveDataProvider([
@@ -40,11 +40,11 @@ class UserSearch extends BaseUserSearch{
             'desc' => ['profile.lastname' => SORT_DESC],
         ];
         
-        $dataProvider->sort->attributes['sitecode'] = [
+        $dataProvider->sort->attributes['tel'] = [
             // The tables are the ones our relation are configured to
             // in my case they are prefixed with "tbl_"
-            'asc' => ['profile.sitecode' => SORT_ASC],
-            'desc' => ['profile.sitecode' => SORT_DESC],
+            'asc' => ['profile.tel' => SORT_ASC],
+            'desc' => ['profile.tel' => SORT_DESC],
         ];
         
         if (!($this->load($params) && $this->validate())) {
@@ -63,7 +63,7 @@ class UserSearch extends BaseUserSearch{
               ->andFilterWhere([$table_name . '.id' => $this->id])
                 ->andFilterWhere(['like', 'profile.firstname', $this->firstname])
                 ->andFilterWhere(['like', 'profile.lastname', $this->lastname])
-                ->andFilterWhere(['like', 'profile.sitecode', $this->sitecode])
+                ->andFilterWhere(['like', 'profile.tel', $this->tel])
               ->andFilterWhere([$table_name . 'registration_ip' => $this->registration_ip]);
 
         return $dataProvider;

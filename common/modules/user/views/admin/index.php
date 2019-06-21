@@ -10,7 +10,7 @@ use appxq\sdii\helpers\SDHtml;
  
 
  
-$this->title = Yii::t('appmenu', 'Member Management System');
+$this->title = Yii::t('appmenu', 'ผู้ใช้');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

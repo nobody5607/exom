@@ -4,7 +4,10 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use appxq\sdii\helpers\SDHtml;
 use appxq\sdii\helpers\SDNoty;
-$this->title = Yii::t('chanpan', 'Update').' '.Yii::t('chanpan', 'User');
+$this->title = Yii::t('chanpan', 'แก้ไข').' '.Yii::t('chanpan', 'ผู้ใช้');
+
+$this->params['breadcrumbs'][] = ['label' => 'ผู้ใช้', 'url' => ['/admin/user']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
  
 <?php $form = ActiveForm::begin([
@@ -17,11 +20,17 @@ $this->title = Yii::t('chanpan', 'Update').' '.Yii::t('chanpan', 'User');
         ],
     ],
 ]); ?>
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <div class="modal-title"><i class="fa fa-user"></i> <?= Html::encode($this->title)?></div>
-</div> 
-<div class="modal-body">
+<div class="box box-primary">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-title">
+                    <i class="fa fa-user"></i> <?= Html::encode($this->title); ?>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="box-body">
     <?= $form->field($profile, 'firstname') ?>
     <?= $form->field($profile, 'lastname') ?>
     <?= $form->field($profile, 'public_email')->label(Yii::t('chanpan','Public Email')) ?>
@@ -37,7 +46,7 @@ $this->title = Yii::t('chanpan', 'Update').' '.Yii::t('chanpan', 'User');
             'id'=>'image-profile'
         ])
     ?>
-    <?= $form->field($profile, 'sitecode') ?>
+    <?= $form->field($profile, 'tel') ?>
 </div>
 <div class="modal-footer">
     <div class="row">
