@@ -5,19 +5,27 @@ use Yii;
 use yii\helpers\Url;
 class AppComponent {
     public static function menuLeft($moduleID, $controllerID, $actionID){
-        $items = [
-            ['label' => 'Home', 'url' => ['/'],'active' => ($controllerID == 'site' && $actionID == 'index')],
-            ['label' => 'About', 'url' => ['site/about']],
-            ['label' => 'Contect', 'url' => ['site/contact']],
+	$items = [
+//            ['label' => 'Home', 'url' => ['/'],'active' => ($controllerID == 'site' && $actionID == 'index')?true:false],
+//            ['label' => 'Bill Items', 'url' => ['/bill-items'],'active' => ($controllerID == 'bill-items')?true:false],
+//            ['label' => 'Bill Packagers', 'url' => ['/bill-packagers'],'active' => ($controllerID == 'bill-packagers')?true:false],
+//            ['label' => 'Bill Shop', 'url' => ['/bill-shop'],'active' => ($controllerID == 'bill-shop')?true:false],
+//            ['label' => 'Bill Shippings', 'url' => ['/bill-shippings'],'active' => ($controllerID == 'bill-shippings')?true:false],
+//            ['label' => 'Bill Chargers', 'url' => ['/bill-chargers'],'active' => ($controllerID == 'bill-chargers')?true:false],
             [
-            'label' => 'Dropdown','active'=>true,
+            'label' => 'Admin',
+                'visible' => \Yii::$app->user->can('admin') ? true : false,
+                'active'=>($moduleID == 'admin')?true:false,
                 'items' => [
-                     ['label' => 'Level 1 - Dropdown A', 'url' => '#','active'=>true],
-                     '<li class="divider"></li>',
-                     '<li class="dropdown-header">Dropdown Header</li>',
-                     ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                     ['label' => 'Members', 'url' => ['/admin/user'],'active'=>($controllerID == 'role')?true:false],
+                     ['label' => 'Assignments', 'url' => ['/admin'],'active'=>($controllerID == 'admin')?true:false],
+                     ['label' => 'Route', 'url' => ['/admin/route'],'active'=>($controllerID == 'route')?true:false],
+                     ['label' => 'Role', 'url' => ['/admin/role'],'active'=>($controllerID == 'role')?true:false],
+                     
+                      
                 ],
             ],
+           
         ];
         return $items;
     }

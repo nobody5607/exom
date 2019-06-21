@@ -9,6 +9,6 @@ Yii::setAlias('storage', dirname(dirname(__DIR__)) . '/storage');
 
 
 // Url Aliases
-Yii::setAlias('@frontendUrl', 'http://stock.local');
-Yii::setAlias('@backendUrl', 'http://backend.stock.local');
-Yii::setAlias('@storageUrl', 'http://storage.stock.local');
+Yii::setAlias('@frontendUrl', 'http://exomethai.local');
+Yii::setAlias('@backendUrl', 'http://backend.exomethai.local');
+Yii::setAlias('@storageUrl', 'http://storage.exomethai.local');

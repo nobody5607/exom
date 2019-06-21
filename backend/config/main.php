@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'name'=>'CarService',
+    'name'=>'APP',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',

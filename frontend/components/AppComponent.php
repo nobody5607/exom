@@ -9,10 +9,15 @@ class AppComponent extends Component {
     
     public function init() {
         parent::init(); 
+
+	$storageUrl = isset( Yii::$app->params['storageUrl'])? Yii::$app->params['storageUrl']:'';
+        $backendUrl = isset( Yii::$app->params['backendUrl'])? Yii::$app->params['backendUrl']:'';
+        $frontendUrl = isset( Yii::$app->params['frontendUrl'])? Yii::$app->params['frontendUrl']:'';
+
        
-        Yii::setAlias('storageUrl', Yii::$app->params['storageUrl']);
-        Yii::setAlias('backendUrl', Yii::$app->params['backendUrl']);
-        Yii::setAlias('frontendUrl', Yii::$app->params['frontendUrl']);
+        Yii::setAlias('storageUrl', $storageUrl);
+        Yii::setAlias('backendUrl', $backendUrl);
+        Yii::setAlias('frontendUrl',$frontendUrl);
         $params = \common\modules\cores\classes\CoreQuery::getOptionsParams();
         Yii::$app->params = \yii\helpers\ArrayHelper::merge(Yii::$app->params, $params);
         
