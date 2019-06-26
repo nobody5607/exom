@@ -11,13 +11,13 @@ cpn\chanpan\assets\jquery_scroll\JqueryScrollAsset::register($this);
 ?>
  
 <?php
-//// if (Yii::$app->controller->action->id === 'login') { 
-// 
-////     echo $this->render(
-////         'main',
-////         ['content' => $content]
-////     );
-//// } else {
+ /* if (Yii::$app->controller->action->id === 'login') { 
+ 
+     echo $this->render(
+         'main-login',
+         ['content' => $content]
+     );
+ } else {*/
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -39,7 +39,7 @@ cpn\chanpan\assets\jquery_scroll\JqueryScrollAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="skin-blue layout-top-nav">
+    <body class="skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
     <div class="wrapper">
         
@@ -48,11 +48,10 @@ cpn\chanpan\assets\jquery_scroll\JqueryScrollAsset::register($this);
             ['directoryAsset' => $directoryAsset]
         ) ?>
 
-        <?php 
-            /*$this->render(
+        <?= $this->render(
             'left.php',
             ['directoryAsset' => $directoryAsset]
-        )*/
+        )
         ?> 
          
         <?= $this->render(
@@ -73,4 +72,4 @@ cpn\chanpan\assets\jquery_scroll\JqueryScrollAsset::register($this);
     </body>
     </html>
     <?php $this->endPage() ?>
-<?php  // } ?>
+<?php   //} ?>

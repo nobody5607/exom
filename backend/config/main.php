@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'name'=>'APP',
+    'name' => ' Exome Database for Thai Autism :: ฐานข้อมูล exome และข้อมูลคลีนิคสำหรับเด็กไทยที่มีภาวะออทิสซึม',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -116,6 +116,7 @@ return [
         'allowActions' => [
             //module, controller, action ที่อนุญาตให้ทำงานโดยไม่ต้องผ่านการตรวจสอบสิทธิ์
             'site/*',
+            'user/register',
             //'admin/*',
         ]
     ],

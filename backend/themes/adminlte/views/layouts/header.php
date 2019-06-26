@@ -25,21 +25,17 @@ use cpn\chanpan\widgets\CNMenu;
 ?> 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">EXDTA</span><span class="logo-lg">EXDTA</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-fixed-top" role="navigation"> 
     <div class="navbar-header">
-      <?php// AppComponent::slideToggleRight()?>  
-      <?php// AppComponent::slideToggleLeft()?>
+      <?php echo AppComponent::slideToggleRight()?>  
+      <?php echo AppComponent::slideToggleLeft()?>
         <a class="navbar-brand" href="#"><?= Yii::$app->name; ?></a>  
     </div>
 <div class="container-fluid">
     <div class="collapse navbar-collapse" id="cnNavbar">       
-      <?= yii\bootstrap\Nav::widget([
-          'options'=>['class'=>'nav navbar-nav'],
-          'items'=> AppComponent::menuLeft($moduleID, $controllerID, $actionID),
-          'encodeLabels'=>FALSE
-      ])?>
+      
         <?php 
         echo yii\bootstrap\Nav::widget([
                 'options'=>['class'=>'nav navbar-nav  navbar-right'],
@@ -48,13 +44,13 @@ use cpn\chanpan\widgets\CNMenu;
             ]);
      ?>  
      <?php 
-        echo '<div id="btnLanguage" class="navbar-text pull-right" >';
-        echo \lajax\languagepicker\widgets\LanguagePicker::widget([
-            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
-            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
-        ]);
+        //echo '<div id="btnLanguage" class="navbar-text pull-right" >';
+        //echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+        //    'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
+        //    'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
+        //]);
             
-        echo '</div>';
+        //echo '</div>';
         
      ?>   
       

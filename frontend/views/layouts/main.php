@@ -54,17 +54,13 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        
-        
-        ['label' => 'Brand', 'url' => ['/products/stock-brand']],
-        ['label' => 'Category', 'url' => ['/products/stock-category']],
-        ['label' => 'Product Doc', 'url' => ['/products/stock-product-docs']],
-        ['label' => 'Product Group', 'url' => ['/products/stock-product-group']],
-        ['label' => 'Product Items', 'url' => ['/products/stock-product-items']],
+        ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Contact', 'url' => ['/site/contact']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
+        //$menuItems[] = ['label' => 'Login', 'url' => ['/backend/web']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

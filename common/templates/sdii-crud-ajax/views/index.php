@@ -18,8 +18,7 @@ use yii\helpers\Url;
 use <?= $generator->indexWidgetType === 'grid' ? "appxq\sdii\widgets\GridView" : "yii\\widgets\\ListView" ?>;
 use appxq\sdii\widgets\ModalForm;
 use appxq\sdii\helpers\SDNoty;
-use appxq\sdii\helpers\SDHtml;
-use Yii;
+use appxq\sdii\helpers\SDHtml; 
 
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
@@ -97,7 +96,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                         return Html::a('<span class="fa fa-edit"></span> '.Yii::t('chanpan', 'Edit'), 
                                     yii\helpers\Url::to(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>/update/'.$model->id]), [
                                     'title' => Yii::t('chanpan', 'Edit'),
-                                    'class' => 'btn btn-warning btn-xs',
+                                    'class' => 'btn btn-primary btn-xs',
                                     'data-action'=>'update',
                                     'data-pjax'=>0
                         ]);

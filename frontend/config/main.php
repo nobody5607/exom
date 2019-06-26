@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'name' => 'Exome Database for Thai Autism',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     //'bootstrap' => ['log'],

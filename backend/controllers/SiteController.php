@@ -23,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','index','contact','about'],
                         'allow' => true,
                     ],
                     [
@@ -64,9 +64,14 @@ class SiteController extends Controller
          return $this->render('index');
  
     }
-    public function actionTest()
+    public function actionAbout()
     {
-        return $this->renderAjax('test');
+         return $this->render('about');
+ 
+    }
+    public function actionContact()
+    {
+         return $this->render('contact');
  
     }
 
